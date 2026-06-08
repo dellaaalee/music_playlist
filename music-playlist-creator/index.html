@@ -3,25 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <title>Music Playlist Explorer</title>
-    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
-    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <!-- Your header content here -->
+    <header class="app-header">
+        <h1>Music Playlist Explorer</h1>
+        <nav class="tabs" aria-label="Playlist view tabs">
+            <button class="tab-button">Featured</button>
+            <button class="tab-button active">All</button>
+        </nav>
     </header>
 
-    <main> 
-        <!-- Your main content here -->
+    <main class="app-content">
+        <section class="playlist-grid" aria-label="Playlist cards">
+            <article class="playlist-card">
+                <img class="cover-image" src="https://picsum.photos/seed/chill-vibes/420/240" alt="Cover art for Chill Vibes playlist">
+                <h2 class="playlist-title">Chill Vibes</h2>
+                <p class="creator-name">DJ Luna</p>
+                <p class="like-count">♡ 5</p>
+            </article>
+
+            <article class="playlist-card">
+                <img class="cover-image" src="https://picsum.photos/seed/workout-hits/420/240" alt="Cover art for Workout Hits playlist">
+                <h2 class="playlist-title">Workout Hits</h2>
+                <p class="creator-name">Kai Johnson</p>
+                <p class="like-count">♡ 12</p>
+            </article>
+
+            <article class="playlist-card">
+                <img class="cover-image" src="https://picsum.photos/seed/coffee-jazz/420/240" alt="Cover art for Coffee Jazz playlist">
+                <h2 class="playlist-title">Coffee Jazz</h2>
+                <p class="creator-name">Mia Chen</p>
+                <p class="like-count">♡ 8</p>
+            </article>
+
+            <article class="playlist-card">
+                <img class="cover-image" src="https://picsum.photos/seed/throwback-pop/420/240" alt="Cover art for Throwback Pop playlist">
+                <h2 class="playlist-title">Throwback Pop</h2>
+                <p class="creator-name">Ari Brooks</p>
+                <p class="like-count">♡ 17</p>
+            </article>
+
+                <article class="playlist-card">
+                    <img class="cover-image" src="https://picsum.photos/seed/coding-focus/420/240" alt="Cover art for Coding Focus playlist">
+                    <h2 class="playlist-title">Coding Focus</h2>
+                    <p class="creator-name">Noah Kim</p>
+                    <p class="like-count">♡ 23</p>
+                </article>
+
+            <article class="playlist-card">
+                <img class="cover-image" src="https://picsum.photos/seed/sunset-drive/420/240" alt="Cover art for Sunset Drive playlist">
+                <h2 class="playlist-title">Sunset Drive</h2>
+                <p class="creator-name">Zoe Carter</p>
+                <p class="like-count">♡ 9</p>
+            </article>
+
+            <article class="playlist-card">
+                <img class="cover-image" src="https://picsum.photos/seed/indie-discovery/420/240" alt="Cover art for Indie Discovery playlist">
+                <h2 class="playlist-title">Indie Discovery</h2>
+                <p class="creator-name">Sam Rivera</p>
+                <p class="like-count">♡ 11</p>
+            </article>
+
+            <article class="playlist-card">
+                <img class="cover-image" src="https://picsum.photos/seed/night-energy/420/240" alt="Cover art for Night Energy playlist">
+                <h2 class="playlist-title">Night Energy</h2>
+                <p class="creator-name">Leah Patel</p>
+                <p class="like-count">♡ 14</p>
+            </article>
+        </section>
     </main>
 
+    <div id="playlistModal" class="modal modal-overlay" aria-hidden="true">
+        <div class="modal-content" role="dialog" aria-modal="true" aria-label="Playlist details">
+            <span class="close" aria-label="Close modal">&times;</span>
+            <div class="modal-header">
+                <img id="playlistImage" src="" alt="Playlist cover image">
+                <div class="modal-header-text">
+                    <h1 id="playlistName"></h1>
+                    <p id="playlistCreator"></p>
+                </div>
+            </div>
+            <div id="songList"></div>
+        </div>
+    </div>
+
     <footer>
-        <!-- Your footer content here -->
+        <p>© 2026 Salesforce FTL. All rights reserved.</p>
     </footer>
-    <script src="data/data.js"></script>
+
     <script src="script.js"></script>
 </body>
 </html>
