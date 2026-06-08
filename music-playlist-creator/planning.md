@@ -1,7 +1,15 @@
 ## Music Playlist Explorer — Planning Spec
 
 ### Data Shape
-[Leave blank — fill in before Milestone 3]
+object_name:
+    - field_name (type) — description of what this field represents
+    - field_name (type) — description of what this field represents
+What does this function take in?
+What does it return or produce?
+What DOM element does it append to?
+What fields from the playlist object does it use?
+
+
 
 ### UI and Interaction Rules
 What are the main sections of the homepage?
