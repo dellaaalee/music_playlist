@@ -1,13 +1,36 @@
 ## Music Playlist Explorer — Planning Spec
 
 ### Data Shape
-object_name:
-    - field_name (type) — description of what this field represents
-    - field_name (type) — description of what this field represents
+Playlist:
+    - playlistID (string) — unique identifier used to reference a specific playlist
+    - name (string) — the title of the playlist shown on the card and in the modal
+    - cover (image) — path or URL to the playlist's cover art image
+    - author (string) — name of the creator who made the playlist
+    - likeCount (number) — number of likes the playlist has received
+    - liked (boolean) — whether the current user has liked this playlist
+    - songs (array of song) — the list of song objects that belong to this playlist
+
+song:
+    - songID (string) — unique identifier used to reference a specific song
+    - title (string) — the name of the song
+    - artist (string) — name of the performing artist
+    - album (string) — name of the album the song appears on
+    - duration (string, mm:ss) — length of the song in minutes and seconds
+    - cover (image/string URL) — path or URL to the song's thumbnail/cover art
+
 What does this function take in?
+My function takes in the data.json file
+
 What does it return or produce?
+It produces rendered playlist card in the DOM
+
 What DOM element does it append to?
-What fields from the playlist object does it use?
+DOM append to playlist grid or app content 
+
+What fields from the playlist object does it use? 
+It uses playlistlistID, name, cover, author, likeCount, liked. 
+
+
 
 
 
