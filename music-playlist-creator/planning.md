@@ -41,13 +41,10 @@ The shuffle button enables user to shuffle songs within a playlist or changing t
 #### Dynamically Create Playlist Cards:
 What does this function take in?
 My function takes in the data.json file
-
 What does it return or produce?
 It produces rendered playlist card in the DOM
-
 What DOM element does it append to?
 DOM append to playlist grid or app content 
-
 What fields from the playlist object does it use? 
 It uses playlistlistID, name, cover, author, likeCount, liked. 
 
@@ -62,16 +59,12 @@ What information needs to be present?
 #### Shuffle function:
 What does this function take in?
 It takes in the song playlist, specifically song array in each playlist. 
-
 What does it return?
 It's going to return the shuffled order of songs in the array.
-
 Should the original song order be preserved anywhere, and if so, how?
 The order of the song would not be changed in the database or data.json, it would change in the display.
-
 What does the UI look like after shuffling?
 The UI will change because the song order will change. 
-
 What should happen when the user clicks shuffle multiple times?
 If a user clicks shuffle multiple time, the order of the song will change. The order of the song would just keep changing. 
 
@@ -84,10 +77,21 @@ Featured page function will take in data from data.json and randomly select one 
 How navigation between the Featured page and the All Playlists page will work.
 The navgiation between featured page and all playlist page will be done through the navbar next to the header. 
 
+#### get playlist description
+What does this function take in?
+What does it return?
+What API does it call and with what prompt structure?
+What happens on error?
 
 ### AI Feature Spec (Milestone 8)
-[Leave blank — fill in before Milestone 8]
+Role: What role should the model play?
+Task: What is the model being asked to do? (generating a description for a music playlist based on its name, author, and song list)
+Inputs: What playlist data will you pass to the model?
+Output format: What should the response look like? (e.g., 2–3 sentence description that captures the vibe and theme of the playlist)
+Constraints: What should the model avoid? (e.g., don't list the songs individually, don't use generic marketing language)
+Failure behavior: What should the UI show if the API call fails or the model doesn't respond?
 
 ### Decisions Log
-[One entry per milestone where you make spec-informed decisions]
+Milestone 1:
+
 
