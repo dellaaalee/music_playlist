@@ -47,8 +47,8 @@ Estimated time spent: **#** hours spent in total
       - [x] The like count on the playlist tile should decrease by 1.
       - [x] There should be visual feedback (such as the heart turning a different color) to show that the playlist has been unliked by the user.
     - [x] **VIDEO WALKTHROUGH SPECIAL INSTRUCTIONS:** In addition to showcasing the above features, for ease of grading, please film yourself liking and unliking:
-      - [ ] a playlist with a like count of 0
-      - [ ] a playlist with a non-zero like count
+      - [x] a playlist with a like count of 0
+      - [x] a playlist with a non-zero like count
 
 - [ ] **Shuffle Songs**
   - [ ] Enable users to shuffle the songs within a playlist using a shuffle button in the playlist's detail modal.

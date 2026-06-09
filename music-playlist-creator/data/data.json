@@ -5,8 +5,8 @@
       "name": "Della Playlist",
       "cover": "https://picsum.photos/seed/chill-vibes/420/240",
       "author": "DJ Luna",
-      "likeCount": 1,
-      "liked": true,
+      "likeCount": 0,
+      "liked": false,
       "songs": [
         {
           "songID": "s001",

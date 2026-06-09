@@ -267,12 +267,6 @@ async function toggleLike(playlistID) {
 
     console.log('Before toggle - liked:', playlist.liked, 'likeCount:', playlist.likeCount);
 
-    // Prevent unliking if already at 0 likes
-    if (!playlist.liked && playlist.likeCount === 0) {
-        console.log('Cannot unlike - like count is already 0');
-        return;
-    }
-
     // Toggle liked state
     playlist.liked = !playlist.liked;
 
@@ -284,7 +278,6 @@ async function toggleLike(playlistID) {
         // Ensure like count never goes negative
         if (playlist.likeCount < 0) {
             playlist.likeCount = 0;
-            playlist.liked = false;
         }
     }
 
