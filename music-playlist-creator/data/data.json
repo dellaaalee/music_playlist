@@ -5,15 +5,15 @@
       "name": "Summary Time",
       "cover": "https://picsum.photos/seed/chill-vibes/420/240",
       "author": "DJ Luna",
-      "likeCount": 5,
+      "likeCount": 13,
       "liked": false,
       "songs": [
         {
           "songID": "s001",
-          "title": "Ocean Eyes",
-          "artist": "Billie Eilish",
+          "title": "Ocean Blue",
+          "artist": "Billie Ocean",
           "album": "Don't Smile at Me",
-          "duration": "3:20",
+          "duration": "3:25",
           "cover": "https://picsum.photos/seed/ocean-eyes/80/80"
         },
         {
@@ -209,8 +209,8 @@
       "name": "Indie Discovery",
       "cover": "https://picsum.photos/seed/indie-discovery/420/240",
       "author": "Sam Rivera",
-      "likeCount": 11,
-      "liked": false,
+      "likeCount": 12,
+      "liked": true,
       "songs": [
         {
           "songID": "s019",
@@ -243,8 +243,8 @@
       "name": "Night Energy",
       "cover": "https://picsum.photos/seed/night-energy/420/240",
       "author": "Leah Patel",
-      "likeCount": 14,
-      "liked": false,
+      "likeCount": 15,
+      "liked": true,
       "songs": [
         {
           "songID": "s022",

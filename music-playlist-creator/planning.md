@@ -18,20 +18,6 @@ song:
     - duration (string, mm:ss) — length of the song in minutes and seconds
     - cover (image/string URL) — path or URL to the song's thumbnail/cover art
 
-What does this function take in?
-My function takes in the data.json file
-
-What does it return or produce?
-It produces rendered playlist card in the DOM
-
-What DOM element does it append to?
-DOM append to playlist grid or app content 
-
-What fields from the playlist object does it use? 
-It uses playlistlistID, name, cover, author, likeCount, liked. 
-
-
-
 
 
 ### UI and Interaction Rules
@@ -52,7 +38,52 @@ The shuffle button enables user to shuffle songs within a playlist or changing t
 
 
 ### Function Specs
-[Add function specs here as you plan each milestone]
+#### Dynamically Create Playlist Cards:
+What does this function take in?
+My function takes in the data.json file
+
+What does it return or produce?
+It produces rendered playlist card in the DOM
+
+What DOM element does it append to?
+DOM append to playlist grid or app content 
+
+What fields from the playlist object does it use? 
+It uses playlistlistID, name, cover, author, likeCount, liked. 
+
+#### Modal Population Function:
+Add a function spec for your modal population function to planning.md. Your spec should answer:
+What does this function take in?
+Which DOM elements does it update?
+What should the modal look like when the function has finished running?
+What information needs to be present?
+
+
+#### Shuffle function:
+What does this function take in?
+It takes in the song playlist, specifically song array in each playlist. 
+
+What does it return?
+It's going to return the shuffled order of songs in the array.
+
+Should the original song order be preserved anywhere, and if so, how?
+The order of the song would not be changed in the database or data.json, it would change in the display.
+
+What does the UI look like after shuffling?
+The UI will change because the song order will change. 
+
+What should happen when the user clicks shuffle multiple times?
+If a user clicks shuffle multiple time, the order of the song will change. The order of the song would just keep changing. 
+
+
+#### Featured Page
+The layout of the page — what sections exist, what goes where.
+The feature page will randomly select and display a playlist. The playlist will have enlarged cover image and playlist name and the song list on the right. The feature page can be accessed through navbar, the page will be defaulted to "all" tab when the user refreshes the page. 
+A function spec for your random playlist selection function: what does it take in, what does it return, and when does it run?
+Featured page function will take in data from data.json and randomly select one playlist to display the data on the page. 
+How navigation between the Featured page and the All Playlists page will work.
+The navgiation between featured page and all playlist page will be done through the navbar next to the header. 
+
 
 ### AI Feature Spec (Milestone 8)
 [Leave blank — fill in before Milestone 8]

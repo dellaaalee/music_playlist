@@ -4,6 +4,7 @@ const playlistName = document.getElementById("playlistName");
 const playlistImage = document.getElementById("playlistImage");
 const playlistCreator = document.getElementById("playlistCreator");
 const songList = document.getElementById("songList");
+const shuffleButton = document.getElementById("shuffleButton");
 const tabButtons = document.querySelectorAll(".tab-button");
 const appContent = document.querySelector(".app-content");
 
@@ -11,18 +12,20 @@ const appContent = document.querySelector(".app-content");
 let playlistsData = [];
 
 /**
- * Fetches playlist data from data.json and displays playlists on the frontend
+ * Fetches playlist data from backend API
  *
- * Takes in: Nothing (fetches from 'data/data.json')
+ * Takes in: Nothing (fetches from backend API)
  * Returns: Promise<Array> - array of playlist objects
  * DOM element it appends to: .playlist-grid (via renderAllView)
  * Fields used: playlistID, name, cover, author, likeCount, liked, songs
  */
 async function loadPlaylistData() {
     try {
-        const response = await fetch('data/data.json');
+        // Fetch data from backend API
+        const response = await fetch('http://localhost:8080/api/playlists');
         const data = await response.json();
         playlistsData = data.playlists;
+
         return playlistsData;
     } catch (error) {
         console.error('Error loading playlist data:', error);
@@ -30,10 +33,46 @@ async function loadPlaylistData() {
     }
 }
 
-function buildSongRows(playlistName) {
-    // Find the playlist by name in the loaded data
-    const playlist = playlistsData.find(p => p.name === playlistName);
-    const songs = playlist?.songs || [];
+/**
+ * Save playlist like state to backend
+ */
+async function savePlaylistLike(playlistID, liked, likeCount) {
+    try {
+        const response = await fetch(`http://localhost:8080/api/playlists/${playlistID}/like`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ liked, likeCount })
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to update playlist');
+        }
+
+        const result = await response.json();
+        console.log('Successfully updated playlist:', result);
+        return result;
+    } catch (error) {
+        console.error('Error saving playlist like:', error);
+        throw error;
+    }
+}
+
+/**
+ * Builds song rows HTML from playlist songs array in data.json
+ *
+ * Takes in: songs (array) - array of song objects from data.json
+ * Returns: string - HTML string of song rows
+ * DOM element it appends to: returned HTML is inserted into #songList by openModal()
+ * Fields used from each song: title, artist, album, duration, cover
+ */
+function buildSongRows(songs) {
+    if (!songs || songs.length === 0) {
+        return '<p>No songs available</p>';
+    }
+
+    console.log('Building song rows for songs:', songs);
 
     return songs.map((song) => `
         <div class="song-row">
@@ -50,15 +89,85 @@ function buildSongRows(playlistName) {
     `).join("");
 }
 
-function openModal(playlist) {
+/**
+ * Shuffles an array using Fisher-Yates algorithm
+ *
+ * Takes in: array - array to shuffle
+ * Returns: new shuffled array (does not modify original)
+ */
+function shuffleArray(array) {
+    const shuffled = [...array]; // Create a copy
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+}
+
+/**
+ * Opens the modal with playlist details from data.json
+ *
+ * Takes in: playlistID (string) - unique identifier for the playlist
+ * Returns: nothing
+ * DOM element it appends to: Updates #playlistName, #playlistImage, #playlistCreator, #songList
+ * Fields used: name, cover, author, songs (array with title, artist, album, duration, cover)
+ */
+function openModal(playlistID) {
+    console.log('Opening modal for playlistID:', playlistID);
+    console.log('Available playlists:', playlistsData);
+
+    // Find the playlist in the loaded data
+    const playlist = playlistsData.find(p => p.playlistID === playlistID);
+
+    if (!playlist) {
+        console.error('Playlist not found:', playlistID);
+        console.error('Available playlist IDs:', playlistsData.map(p => p.playlistID));
+        return;
+    }
+
+    console.log('Found playlist:', playlist);
+
+    // Update modal with playlist data from data.json
     playlistName.textContent = playlist.name;
-    playlistImage.src = playlist.imageUrl;
-    playlistImage.alt = playlist.imageAlt;
-    playlistCreator.textContent = playlist.creator;
-    songList.innerHTML = buildSongRows(playlist.name);
+    playlistImage.src = playlist.cover;
+    playlistImage.alt = `Cover art for ${playlist.name}`;
+    playlistCreator.textContent = playlist.author;
+
+    // Build and insert song rows using songs array from data.json
+    songList.innerHTML = buildSongRows(playlist.songs);
+
+    // Set up shuffle button for this playlist
+    setupShuffleButton(playlist);
 
     playlistModal.style.display = "block";
     playlistModal.setAttribute("aria-hidden", "false");
+}
+
+/**
+ * Sets up the shuffle button for the current playlist
+ *
+ * Takes in: playlist (object) - the playlist object with songs array
+ * Returns: nothing
+ * DOM element it updates: #songList (re-renders with shuffled songs)
+ */
+function setupShuffleButton(playlist) {
+    // Remove any existing listeners by cloning the button
+    const newShuffleButton = shuffleButton.cloneNode(true);
+    shuffleButton.parentNode.replaceChild(newShuffleButton, shuffleButton);
+
+    // Update the global reference
+    const updatedShuffleButton = document.getElementById("shuffleButton");
+
+    // Add click listener
+    updatedShuffleButton.addEventListener("click", (event) => {
+        event.preventDefault();
+
+        // Shuffle the songs
+        const shuffledSongs = shuffleArray(playlist.songs);
+
+        // Re-render the song list with shuffled order
+        songList.innerHTML = buildSongRows(shuffledSongs);
+    });
 }
 
 function closeModal() {
@@ -112,6 +221,7 @@ function renderFeaturedView() {
             <div class="featured-main">
                 <img class="featured-image" src="${featuredPlaylist.cover}" alt="Cover art for ${featuredPlaylist.name}">
                 <h2 class="featured-title">${featuredPlaylist.name}</h2>
+                <p class="featured-author">by ${featuredPlaylist.author}</p>
             </div>
             <div class="featured-songs">
                 ${songRows}
@@ -127,7 +237,12 @@ function renderAllView() {
             <img class="cover-image" src="${playlist.cover}" alt="Cover art for ${playlist.name} playlist">
             <h2 class="playlist-title">${playlist.name}</h2>
             <p class="creator-name">${playlist.author}</p>
-            <p class="like-count">${playlist.liked ? '♥' : '♡'} ${playlist.likeCount}</p>
+            <div class="like-container">
+                <button class="like-button ${playlist.liked ? 'liked' : ''}" data-playlist-id="${playlist.playlistID}" aria-label="Like playlist">
+                    ${playlist.liked ? '♥' : '♡'}
+                </button>
+                <span class="like-count">${playlist.likeCount}</span>
+            </div>
         </article>
     `).join('');
 
@@ -140,21 +255,79 @@ function renderAllView() {
     attachCardListeners();
 }
 
+// Toggle like status for a playlist
+async function toggleLike(playlistID) {
+    const playlist = playlistsData.find(p => p.playlistID === playlistID);
+    if (!playlist) return;
+
+    // Toggle liked state
+    playlist.liked = !playlist.liked;
+
+    // Update like count
+    if (playlist.liked) {
+        playlist.likeCount++;
+    } else {
+        playlist.likeCount--;
+    }
+
+    // Update the UI immediately for better UX
+    const likeButton = document.querySelector(`.like-button[data-playlist-id="${playlistID}"]`);
+    const likeCountSpan = likeButton.parentElement.querySelector('.like-count');
+
+    if (playlist.liked) {
+        likeButton.classList.add('liked');
+        likeButton.textContent = '♥';
+    } else {
+        likeButton.classList.remove('liked');
+        likeButton.textContent = '♡';
+    }
+
+    likeCountSpan.textContent = playlist.likeCount;
+
+    // Save to backend (persists to data.json)
+    try {
+        await savePlaylistLike(playlistID, playlist.liked, playlist.likeCount);
+    } catch (error) {
+        // If save fails, revert the changes
+        playlist.liked = !playlist.liked;
+        if (playlist.liked) {
+            playlist.likeCount++;
+        } else {
+            playlist.likeCount--;
+        }
+
+        // Revert UI
+        if (playlist.liked) {
+            likeButton.classList.add('liked');
+            likeButton.textContent = '♥';
+        } else {
+            likeButton.classList.remove('liked');
+            likeButton.textContent = '♡';
+        }
+        likeCountSpan.textContent = playlist.likeCount;
+
+        alert('Failed to save like. Please try again.');
+    }
+}
+
 // Attach click listeners to playlist cards
 function attachCardListeners() {
     const cards = document.querySelectorAll(".playlist-card");
-    cards.forEach((card) => {
-        card.addEventListener("click", () => {
-            const image = card.querySelector(".cover-image");
-            const title = card.querySelector(".playlist-title");
-            const creator = card.querySelector(".creator-name");
 
-            openModal({
-                name: title.textContent,
-                imageUrl: image.src,
-                imageAlt: image.alt,
-                creator: creator.textContent
-            });
+    cards.forEach((card) => {
+        // Handle like button clicks
+        const likeButton = card.querySelector(".like-button");
+        likeButton.addEventListener("click", (event) => {
+            event.preventDefault(); // Prevent default button behavior
+            event.stopPropagation(); // Prevent card click from firing
+            const playlistID = likeButton.dataset.playlistId;
+            toggleLike(playlistID);
+        });
+
+        // Handle card clicks (open modal)
+        card.addEventListener("click", () => {
+            const playlistID = card.dataset.playlistId;
+            openModal(playlistID);
         });
     });
 }
