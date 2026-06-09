@@ -238,7 +238,7 @@ function renderAllView() {
             <h2 class="playlist-title">${playlist.name}</h2>
             <p class="creator-name">${playlist.author}</p>
             <div class="like-container">
-                <button class="like-button ${playlist.liked ? 'liked' : ''}" data-playlist-id="${playlist.playlistID}" aria-label="Like playlist">
+                <button type="button" class="like-button ${playlist.liked ? 'liked' : ''}" data-playlist-id="${playlist.playlistID}" aria-label="Like playlist">
                     ${playlist.liked ? '♥' : '♡'}
                 </button>
                 <span class="like-count">${playlist.likeCount}</span>
@@ -257,8 +257,21 @@ function renderAllView() {
 
 // Toggle like status for a playlist
 async function toggleLike(playlistID) {
+    console.log('toggleLike called for:', playlistID);
+
     const playlist = playlistsData.find(p => p.playlistID === playlistID);
-    if (!playlist) return;
+    if (!playlist) {
+        console.error('Playlist not found:', playlistID);
+        return;
+    }
+
+    console.log('Before toggle - liked:', playlist.liked, 'likeCount:', playlist.likeCount);
+
+    // Prevent unliking if already at 0 likes
+    if (!playlist.liked && playlist.likeCount === 0) {
+        console.log('Cannot unlike - like count is already 0');
+        return;
+    }
 
     // Toggle liked state
     playlist.liked = !playlist.liked;
@@ -268,7 +281,19 @@ async function toggleLike(playlistID) {
         playlist.likeCount++;
     } else {
         playlist.likeCount--;
+        // Ensure like count never goes negative
+        if (playlist.likeCount < 0) {
+            playlist.likeCount = 0;
+            playlist.liked = false;
+        }
     }
+
+    // Force liked to be false if count is 0
+    if (playlist.likeCount === 0) {
+        playlist.liked = false;
+    }
+
+    console.log('After toggle - liked:', playlist.liked, 'likeCount:', playlist.likeCount);
 
     // Update the UI immediately for better UX
     const likeButton = document.querySelector(`.like-button[data-playlist-id="${playlistID}"]`);
@@ -283,11 +308,15 @@ async function toggleLike(playlistID) {
     }
 
     likeCountSpan.textContent = playlist.likeCount;
+    console.log('UI updated - likeCount span now shows:', likeCountSpan.textContent);
 
     // Save to backend (persists to data.json)
     try {
+        console.log('Sending update to backend...');
         await savePlaylistLike(playlistID, playlist.liked, playlist.likeCount);
+        console.log('Backend update successful');
     } catch (error) {
+        console.error('Backend update failed:', error);
         // If save fails, revert the changes
         playlist.liked = !playlist.liked;
         if (playlist.liked) {

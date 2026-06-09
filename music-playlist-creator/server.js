@@ -10,6 +10,13 @@ const DATA_FILE = path.join(__dirname, 'data', 'data.json');
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+// Disable caching for development
+app.use((req, res, next) => {
+    res.set('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+    next();
+});
+
 app.use(express.static(__dirname));
 
 // GET endpoint to fetch playlists
@@ -40,9 +47,15 @@ app.put('/api/playlists/:playlistID/like', async (req, res) => {
             return res.status(404).json({ error: 'Playlist not found' });
         }
 
-        // Update the playlist
-        playlist.liked = liked;
-        playlist.likeCount = likeCount;
+        // Validate and update the playlist
+        // Ensure like count never goes negative
+        let validatedLikeCount = Math.max(0, likeCount);
+
+        // If like count is 0, liked must be false
+        let validatedLiked = validatedLikeCount === 0 ? false : liked;
+
+        playlist.liked = validatedLiked;
+        playlist.likeCount = validatedLikeCount;
 
         // Write back to file
         await fs.writeFile(DATA_FILE, JSON.stringify(jsonData, null, 2));

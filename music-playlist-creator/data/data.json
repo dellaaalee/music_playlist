@@ -2,11 +2,11 @@
   "playlists": [
     {
       "playlistID": "p001",
-      "name": "Summary Time",
+      "name": "Della Playlist",
       "cover": "https://picsum.photos/seed/chill-vibes/420/240",
       "author": "DJ Luna",
-      "likeCount": 13,
-      "liked": false,
+      "likeCount": 1,
+      "liked": true,
       "songs": [
         {
           "songID": "s001",
@@ -39,8 +39,8 @@
       "name": "Workout Hits",
       "cover": "https://picsum.photos/seed/workout-hits/420/240",
       "author": "Kai Johnson",
-      "likeCount": 12,
-      "liked": false,
+      "likeCount": 13,
+      "liked": true,
       "songs": [
         {
           "songID": "s004",
@@ -73,8 +73,8 @@
       "name": "Coffee Jazz",
       "cover": "https://picsum.photos/seed/coffee-jazz/420/240",
       "author": "Mia Chen",
-      "likeCount": 8,
-      "liked": false,
+      "likeCount": 9,
+      "liked": true,
       "songs": [
         {
           "songID": "s007",
@@ -107,15 +107,15 @@
       "name": "Throwback Pop",
       "cover": "https://picsum.photos/seed/throwback-pop/420/240",
       "author": "Ari Brooks",
-      "likeCount": 17,
-      "liked": false,
+      "likeCount": 18,
+      "liked": true,
       "songs": [
         {
           "songID": "s010",
           "title": "Toxic",
           "artist": "Britney Spears",
           "album": "In the Zone",
-          "duration": "3:18",
+          "duration": "3:00",
           "cover": "https://picsum.photos/seed/toxic/80/80"
         },
         {
@@ -141,8 +141,8 @@
       "name": "Coding Focus",
       "cover": "https://picsum.photos/seed/coding-focus/420/240",
       "author": "Noah Kim",
-      "likeCount": 23,
-      "liked": false,
+      "likeCount": 24,
+      "liked": true,
       "songs": [
         {
           "songID": "s013",
@@ -175,8 +175,8 @@
       "name": "Sunset Drive",
       "cover": "https://picsum.photos/seed/sunset-drive/420/240",
       "author": "Zoe Carter",
-      "likeCount": 9,
-      "liked": false,
+      "likeCount": 10,
+      "liked": true,
       "songs": [
         {
           "songID": "s016",
@@ -277,8 +277,8 @@
       "name": "90's R&B",
       "cover": "https://picsum.photos/seed/90s-rnb/800/500",
       "author": "DJ Luna",
-      "likeCount": 42,
-      "liked": true,
+      "likeCount": 41,
+      "liked": false,
       "songs": [
         {
           "songID": "s025",
