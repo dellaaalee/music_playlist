@@ -10,6 +10,11 @@
     <header class="app-header">
         <h1>Albums</h1>
         <div class="header-controls">
+            <button type="button" id="addButton" class="add-button" aria-label="Add playlist">
+                <svg class="add-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
             <button type="button" id="searchToggle" class="search-toggle-button" aria-label="Toggle search">
                 <img src="assets/img/search_icon.png" alt="Search" class="search-icon">
             </button>
@@ -34,15 +39,35 @@
 
     <div id="playlistModal" class="modal modal-overlay" aria-hidden="true">
         <div class="modal-content" role="dialog" aria-modal="true" aria-label="Playlist details">
-            <span class="close" aria-label="Close modal">&times;</span>
+            <button type="button" id="menuButton" class="menu-button" aria-label="Menu options">
+                <svg class="menu-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="5" r="2" fill="currentColor"/>
+                    <circle cx="12" cy="12" r="2" fill="currentColor"/>
+                    <circle cx="12" cy="19" r="2" fill="currentColor"/>
+                </svg>
+            </button>
+            <div id="dropdownMenu" class="dropdown-menu hidden">
+                <button type="button" id="editPlaylistButton" class="dropdown-item">
+                    Edit Playlist
+                </button>
+                <button type="button" id="deletePlaylistButton" class="dropdown-item dropdown-item-danger" onclick="console.log('Inline click works!')">
+                    Delete Playlist
+                </button>
+            </div>
             <div class="modal-header">
                 <img id="playlistImage" src="" alt="Playlist cover image">
                 <div class="modal-header-text">
                     <h1 id="playlistName"></h1>
                     <p id="playlistCreator"></p>
-                    <button type="button" id="shuffleButton" class="shuffle-button" aria-label="Shuffle playlist">
-                        Shuffle
-                    </button>
+                    <div class="modal-buttons">
+                        <button type="button" id="shuffleButton" class="shuffle-button" aria-label="Shuffle playlist">
+                            Shuffle
+                        </button>
+                        <button type="button" id="aiSummaryButton" class="ai-summary-button" aria-label="AI Summary">
+                            <img src="assets/img/ai_icon.png" alt="AI" class="ai-icon">
+                            AI Summary
+                        </button>
+                    </div>
                 </div>
             </div>
             <div id="songList"></div>

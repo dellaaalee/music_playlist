@@ -32,12 +32,13 @@ body {
 .header-controls {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 4px;
 }
 
 .tabs {
     display: flex;
     gap: 8px;
+    margin-left: 12px;
 }
 
 .tab-button {
@@ -60,6 +61,42 @@ body {
 .tab-button.active {
     background-color: #000000;
     color: #ffffff;
+}
+
+/* Add Button */
+.add-button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+}
+
+.add-button:hover {
+    background-color: #f0f0f0;
+}
+
+.add-button:active {
+    background-color: #e0e0e0;
+}
+
+.add-icon {
+    width: 22px;
+    height: 22px;
+    display: block;
+    color: #000000;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.add-button:hover .add-icon {
+    opacity: 1;
 }
 
 /* Search Toggle Button */
@@ -381,21 +418,121 @@ body {
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
     background-color: rgba(0, 0, 0, 0.6);
-    padding: 40px 20px;
     z-index: 1000;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    overflow-y: auto;
+    box-sizing: border-box;
 }
 
 .modal-content {
-    width: min(900px, 90vw);
-    margin: 0 auto;
+    width: 100%;
+    max-width: 900px;
+    max-height: 100%;
+    overflow-y: auto;
+    margin: auto;
     border-radius: 16px;
     background-color: #ffffff;
     padding: 40px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    position: relative;
+    box-sizing: border-box;
+}
+
+.menu-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    z-index: 10;
+}
+
+.menu-button:hover {
+    background-color: #f0f0f0;
+}
+
+.menu-button:active {
+    background-color: #e0e0e0;
+}
+
+.menu-icon {
+    width: 20px;
+    height: 20px;
+    display: block;
+    color: #000000;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.menu-button:hover .menu-icon {
+    opacity: 1;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    min-width: 160px;
+    z-index: 11;
+    overflow: hidden;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.dropdown-menu.hidden {
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+}
+
+.dropdown-item {
+    display: block;
+    width: 100%;
+    padding: 12px 16px;
+    background-color: transparent;
+    border: none;
+    text-align: left;
+    font-size: 15px;
+    font-weight: 500;
+    color: #000000;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.dropdown-item:hover {
+    background-color: #f5f5f5;
+}
+
+.dropdown-item:active {
+    background-color: #ececec;
+}
+
+.dropdown-item-danger {
+    color: #fa233b;
+}
+
+.dropdown-item-danger:hover {
+    background-color: #fff5f6;
+}
+
+.dropdown-item-danger:active {
+    background-color: #ffe6e9;
 }
 
 .modal-header {
@@ -435,8 +572,14 @@ body {
     color: #999999;
 }
 
-.shuffle-button {
+.modal-buttons {
+    display: flex;
+    gap: 12px;
     margin-top: 18px;
+    flex-wrap: wrap;
+}
+
+.shuffle-button {
     padding: 12px 28px;
     background-color: #fa233b;
     color: #ffffff;
@@ -457,6 +600,38 @@ body {
 
 .shuffle-button:active {
     transform: translateY(0);
+}
+
+.ai-summary-button {
+    padding: 12px 24px;
+    background-color: #ffffff;
+    color: #fa233b;
+    border: 2px solid #fa233b;
+    border-radius: 24px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(250, 35, 59, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ai-summary-button:hover {
+    background-color: #fff5f6;
+    box-shadow: 0 4px 12px rgba(250, 35, 59, 0.3);
+    transform: translateY(-1px);
+}
+
+.ai-summary-button:active {
+    transform: translateY(0);
+}
+
+.ai-icon {
+    width: 18px;
+    height: 18px;
+    display: block;
 }
 
 #songList {
@@ -524,23 +699,6 @@ body {
     flex-shrink: 0;
 }
 
-.close {
-    position: absolute;
-    top: 24px;
-    right: 28px;
-    font-size: 28px;
-    line-height: 1;
-    cursor: pointer;
-    color: #999999;
-    font-weight: 300;
-    transition: color 0.15s ease;
-}
-
-.close:hover,
-.close:focus {
-    color: #000000;
-    text-decoration: none;
-}
 
 footer {
     border-top: 1px solid #e5e5e5;
@@ -615,6 +773,26 @@ footer p {
         width: 100%;
         max-width: 400px;
     }
+
+    .modal {
+        padding: 30px;
+    }
+
+    .modal-content {
+        padding: 32px;
+    }
+
+    .modal-header {
+        gap: 24px;
+    }
+
+    #playlistImage {
+        width: 180px;
+    }
+
+    #playlistName {
+        font-size: 36px;
+    }
 }
 
 @media (max-width: 600px) {
@@ -639,17 +817,147 @@ footer p {
         gap: 20px 12px;
     }
 
+    .search-bar {
+        padding: 12px 16px;
+    }
+
+    .search-bar.hidden {
+        padding: 0 16px;
+    }
+
+    .modal {
+        padding: 20px;
+    }
+
     .modal-content {
-        padding: 24px;
+        padding: 28px;
+    }
+
+    .menu-button {
+        top: 16px;
+        right: 16px;
+    }
+
+    .dropdown-menu {
+        top: 52px;
+        right: 16px;
     }
 
     .modal-header {
         flex-direction: column;
         gap: 20px;
+        margin-bottom: 24px;
     }
 
     #playlistImage {
         width: 100%;
-        max-width: 280px;
+        max-width: 240px;
+        align-self: center;
+    }
+
+    #playlistName {
+        font-size: 32px;
+    }
+
+    #playlistCreator {
+        font-size: 16px;
+    }
+
+    .modal-buttons {
+        flex-direction: column;
+        width: 100%;
+        max-width: 240px;
+        align-self: center;
+    }
+
+    .shuffle-button,
+    .ai-summary-button {
+        padding: 10px 24px;
+        font-size: 14px;
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 400px) {
+    .modal {
+        padding: 16px;
+    }
+
+    .modal-content {
+        padding: 24px;
+        border-radius: 12px;
+    }
+
+    .menu-button {
+        top: 12px;
+        right: 12px;
+        width: 32px;
+        height: 32px;
+        padding: 6px;
+    }
+
+    .menu-icon {
+        width: 18px;
+        height: 18px;
+    }
+
+    .dropdown-menu {
+        top: 48px;
+        right: 12px;
+        min-width: 140px;
+    }
+
+    .dropdown-item {
+        padding: 10px 14px;
+        font-size: 14px;
+    }
+
+    .modal-header {
+        margin-bottom: 20px;
+    }
+
+    #playlistImage {
+        max-width: 200px;
+    }
+
+    #playlistName {
+        font-size: 28px;
+    }
+
+    #playlistCreator {
+        font-size: 15px;
+    }
+
+    .modal-buttons {
+        max-width: 200px;
+    }
+
+    .shuffle-button,
+    .ai-summary-button {
+        padding: 10px 20px;
+        font-size: 13px;
+    }
+
+    .ai-icon {
+        width: 16px;
+        height: 16px;
+    }
+
+    .playlist-title {
+        font-size: 15px;
+    }
+
+    .creator-name {
+        font-size: 13px;
+    }
+
+    .song-row {
+        padding: 10px 8px;
+    }
+
+    .song-thumb {
+        width: 48px;
+        height: 48px;
     }
 }

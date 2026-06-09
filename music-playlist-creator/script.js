@@ -1,5 +1,4 @@
 const playlistModal = document.getElementById("playlistModal");
-const closeButton = document.querySelector(".close");
 const playlistName = document.getElementById("playlistName");
 const playlistImage = document.getElementById("playlistImage");
 const playlistCreator = document.getElementById("playlistCreator");
@@ -15,8 +14,24 @@ const searchInput = document.getElementById("searchInput");
 const searchButton = document.getElementById("searchButton");
 const clearButton = document.getElementById("clearButton");
 
-// Store fetched playlist data globally
+// Menu dropdown elements
+const menuButton = document.getElementById("menuButton");
+const dropdownMenu = document.getElementById("dropdownMenu");
+const editPlaylistButton = document.getElementById("editPlaylistButton");
+const deletePlaylistButton = document.getElementById("deletePlaylistButton");
+
+// Debug: Check if elements exist
+console.log('Menu elements loaded:', {
+    menuButton: !!menuButton,
+    dropdownMenu: !!dropdownMenu,
+    editPlaylistButton: !!editPlaylistButton,
+    deletePlaylistButton: !!deletePlaylistButton
+});
+
+// Store fetched data globally
 let playlistsData = [];
+let songsData = {};
+let currentPlaylistID = null; // Track the currently open playlist in modal
 
 /**
  * Fetches playlist data from backend API
@@ -24,7 +39,7 @@ let playlistsData = [];
  * Takes in: Nothing (fetches from backend API)
  * Returns: Promise<Array> - array of playlist objects
  * DOM element it appends to: .playlist-grid (via renderAllView)
- * Fields used: playlistID, name, cover, author, likeCount, liked, songs
+ * Fields used: playlistID, name, cover, author, likeCount, liked, songs (array of song IDs)
  */
 async function loadPlaylistData() {
     try {
@@ -32,6 +47,7 @@ async function loadPlaylistData() {
         const response = await fetch('http://localhost:8080/api/playlists');
         const data = await response.json();
         playlistsData = data.playlists;
+        songsData = data.songs;
 
         return playlistsData;
     } catch (error) {
@@ -67,9 +83,48 @@ async function savePlaylistLike(playlistID, liked, likeCount) {
 }
 
 /**
+ * Delete playlist from backend
+ */
+async function deletePlaylist(playlistID) {
+    try {
+        const response = await fetch(`http://localhost:8080/api/playlists/${playlistID}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to delete playlist');
+        }
+
+        const result = await response.json();
+        console.log('Successfully deleted playlist:', result);
+        return result;
+    } catch (error) {
+        console.error('Error deleting playlist:', error);
+        throw error;
+    }
+}
+
+/**
+ * Resolves song IDs to full song objects
+ *
+ * Takes in: songIDs (array) - array of song IDs
+ * Returns: array of song objects
+ */
+function resolveSongs(songIDs) {
+    if (!songIDs || songIDs.length === 0) {
+        return [];
+    }
+
+    return songIDs.map(songID => songsData[songID]).filter(song => song !== undefined);
+}
+
+/**
  * Builds song rows HTML from playlist songs array in data.json
  *
- * Takes in: songs (array) - array of song objects from data.json
+ * Takes in: songs (array) - array of song objects
  * Returns: string - HTML string of song rows
  * DOM element it appends to: returned HTML is inserted into #songList by openModal()
  * Fields used from each song: title, artist, album, duration, cover
@@ -78,8 +133,6 @@ function buildSongRows(songs) {
     if (!songs || songs.length === 0) {
         return '<p>No songs available</p>';
     }
-
-    console.log('Building song rows for songs:', songs);
 
     return songs.map((song) => `
         <div class="song-row">
@@ -128,30 +181,36 @@ function openModal(playlistID) {
         return;
     }
 
+    // Track the current playlist ID
+    currentPlaylistID = playlistID;
+
+    // Resolve song IDs to full song objects
+    const songs = resolveSongs(playlist.songs);
+
     // Update modal with playlist data from data.json
     playlistName.textContent = playlist.name;
     playlistImage.src = playlist.cover;
     playlistImage.alt = `Cover art for ${playlist.name}`;
     playlistCreator.textContent = playlist.author;
 
-    // Build and insert song rows using songs array from data.json
-    songList.innerHTML = buildSongRows(playlist.songs);
+    // Build and insert song rows using resolved songs
+    songList.innerHTML = buildSongRows(songs);
 
     // Set up shuffle button for this playlist
-    setupShuffleButton(playlist);
+    setupShuffleButton(songs);
 
-    playlistModal.style.display = "block";
+    playlistModal.style.display = "flex";
     playlistModal.setAttribute("aria-hidden", "false");
 }
 
 /**
  * Sets up the shuffle button for the current playlist
  *
- * Takes in: playlist (object) - the playlist object with songs array
+ * Takes in: songs (array) - resolved song objects
  * Returns: nothing
  * DOM element it updates: #songList (re-renders with shuffled songs)
  */
-function setupShuffleButton(playlist) {
+function setupShuffleButton(songs) {
     // Get fresh reference to the shuffle button
     const currentShuffleButton = document.getElementById("shuffleButton");
 
@@ -164,7 +223,7 @@ function setupShuffleButton(playlist) {
         event.preventDefault();
 
         // Shuffle the songs
-        const shuffledSongs = shuffleArray(playlist.songs);
+        const shuffledSongs = shuffleArray(songs);
 
         // Re-render the song list with shuffled order
         songList.innerHTML = buildSongRows(shuffledSongs);
@@ -176,10 +235,7 @@ function closeModal() {
     playlistModal.setAttribute("aria-hidden", "true");
 }
 
-if (closeButton) {
-    closeButton.addEventListener("click", closeModal);
-}
-
+// Close modal when clicking on the overlay background
 if (playlistModal) {
     playlistModal.addEventListener("click", (event) => {
         if (event.target === playlistModal) {
@@ -188,6 +244,7 @@ if (playlistModal) {
     });
 }
 
+// Close modal with Escape key
 document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
         closeModal();
@@ -205,7 +262,10 @@ function renderFeaturedView() {
         return;
     }
 
-    const songRows = featuredPlaylist.songs.map((song) => `
+    // Resolve song IDs to full song objects
+    const songs = resolveSongs(featuredPlaylist.songs);
+
+    const songRows = songs.map((song) => `
         <div class="featured-song-row">
             <img class="featured-song-thumb" src="${song.cover}" alt="Cover art for ${song.title}">
             <div class="featured-song-text">
@@ -431,6 +491,93 @@ searchInput.addEventListener("keypress", (event) => {
         performSearch();
     }
 });
+
+// Menu dropdown functionality
+menuButton.addEventListener("click", (event) => {
+    event.stopPropagation();
+    dropdownMenu.classList.toggle("hidden");
+});
+
+// Close dropdown when clicking outside
+document.addEventListener("click", (event) => {
+    if (!dropdownMenu.classList.contains("hidden") &&
+        !menuButton.contains(event.target) &&
+        !dropdownMenu.contains(event.target)) {
+        dropdownMenu.classList.add("hidden");
+    }
+});
+
+// Edit playlist button functionality
+if (editPlaylistButton) {
+    editPlaylistButton.addEventListener("click", (event) => {
+        event.stopPropagation();
+        console.log("Edit Playlist clicked");
+        console.log("Current playlist ID:", currentPlaylistID);
+        // TODO: Add edit playlist functionality here
+        dropdownMenu.classList.add("hidden");
+    });
+} else {
+    console.error('Edit playlist button not found!');
+}
+
+// Delete playlist button functionality
+if (deletePlaylistButton) {
+    deletePlaylistButton.addEventListener("click", async (event) => {
+        event.stopPropagation();
+        console.log('Delete button clicked!');
+
+        if (!currentPlaylistID) {
+            console.error('No playlist selected');
+            return;
+        }
+
+        // Confirm deletion
+        const playlist = playlistsData.find(p => p.playlistID === currentPlaylistID);
+        if (!playlist) {
+            console.error('Playlist not found in data');
+            return;
+        }
+
+        if (!confirm(`Are you sure you want to delete "${playlist.name}"? This action cannot be undone.`)) {
+            dropdownMenu.classList.add("hidden");
+            return;
+        }
+
+        try {
+            console.log('Deleting playlist:', currentPlaylistID);
+
+            // Delete from backend
+            await deletePlaylist(currentPlaylistID);
+
+            // Remove from local data
+            const index = playlistsData.findIndex(p => p.playlistID === currentPlaylistID);
+            if (index !== -1) {
+                playlistsData.splice(index, 1);
+            }
+
+            // Close the modal and dropdown
+            closeModal();
+            dropdownMenu.classList.add("hidden");
+
+            // Re-render the view
+            // Check which tab is currently active
+            const activeTab = document.querySelector('.tab-button.active');
+            if (activeTab.dataset.view === 'featured') {
+                renderFeaturedView();
+            } else {
+                renderAllView();
+            }
+
+            console.log('Playlist deleted successfully');
+        } catch (error) {
+            console.error('Failed to delete playlist:', error);
+            alert('Failed to delete playlist. Please try again.');
+            dropdownMenu.classList.add("hidden");
+        }
+    });
+} else {
+    console.error('Delete playlist button not found!');
+}
 
 // Set up global event delegation for playlist cards (only once)
 function setupCardEventDelegation() {

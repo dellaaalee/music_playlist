@@ -100,6 +100,17 @@ const FAILURE_MESSAGE = "summary unavilable - try again in a moment";
 
 disable the button before the function is finished
 
+async function getSummary(description) {
+    try {
+        const response = await fetch(
+            {
+                method: "POST",
+
+            }
+        )
+    }
+}
+
 
 ### Decisions Log
 Milestone 1:
@@ -116,3 +127,9 @@ It will automatically switch to "all" tab when searching function is used.
 
 
 
+
+#### Delete Playlists
+ Add a delete button to each playlist tile within the grid view.
+ When clicked, the playlist is removed from the playlist grid view.
+
+when you click on the delete playlist, the data.json will delete the current playlist the modal is on. The playlist grid view will also update the rendering. 

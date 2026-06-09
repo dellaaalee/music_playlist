@@ -67,6 +67,35 @@ app.put('/api/playlists/:playlistID/like', async (req, res) => {
     }
 });
 
+// DELETE endpoint to delete a playlist
+app.delete('/api/playlists/:playlistID', async (req, res) => {
+    try {
+        const { playlistID } = req.params;
+
+        // Read current data
+        const data = await fs.readFile(DATA_FILE, 'utf8');
+        const jsonData = JSON.parse(data);
+
+        // Find the playlist index
+        const playlistIndex = jsonData.playlists.findIndex(p => p.playlistID === playlistID);
+
+        if (playlistIndex === -1) {
+            return res.status(404).json({ error: 'Playlist not found' });
+        }
+
+        // Remove the playlist
+        jsonData.playlists.splice(playlistIndex, 1);
+
+        // Write back to file
+        await fs.writeFile(DATA_FILE, JSON.stringify(jsonData, null, 2));
+
+        res.json({ success: true, playlistID });
+    } catch (error) {
+        console.error('Error deleting playlist:', error);
+        res.status(500).json({ error: 'Failed to delete playlist' });
+    }
+});
+
 app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);
     console.log('Press Ctrl+C to stop the server');

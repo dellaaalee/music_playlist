@@ -1,4 +1,286 @@
 {
+  "songs": {
+    "s001": {
+      "songID": "s001",
+      "title": "Ocean Blue",
+      "artist": "Ocean",
+      "album": "Don't Smile at Me",
+      "duration": "3:25",
+      "cover": "https://picsum.photos/seed/ocean-eyes/80/80"
+    },
+    "s002": {
+      "songID": "s002",
+      "title": "Pink + White",
+      "artist": "Frank Ocean",
+      "album": "Blonde",
+      "duration": "3:05",
+      "cover": "https://picsum.photos/seed/pink-white/80/80"
+    },
+    "s003": {
+      "songID": "s003",
+      "title": "Snooze",
+      "artist": "SZA",
+      "album": "SOS",
+      "duration": "3:21",
+      "cover": "https://picsum.photos/seed/snooze/80/80"
+    },
+    "s004": {
+      "songID": "s004",
+      "title": "Levitating",
+      "artist": "Dua Lipa",
+      "album": "Future Nostalgia",
+      "duration": "3:23",
+      "cover": "https://picsum.photos/seed/levitating/80/80"
+    },
+    "s005": {
+      "songID": "s005",
+      "title": "Paint The Town Red",
+      "artist": "Doja Cat",
+      "album": "Scarlet",
+      "duration": "3:50",
+      "cover": "https://picsum.photos/seed/paint-town-red/80/80"
+    },
+    "s006": {
+      "songID": "s006",
+      "title": "God's Plan",
+      "artist": "Drake",
+      "album": "Scorpion",
+      "duration": "3:19",
+      "cover": "https://picsum.photos/seed/gods-plan/80/80"
+    },
+    "s007": {
+      "songID": "s007",
+      "title": "Take Five",
+      "artist": "Dave Brubeck",
+      "album": "Time Out",
+      "duration": "5:24",
+      "cover": "https://picsum.photos/seed/take-five/80/80"
+    },
+    "s008": {
+      "songID": "s008",
+      "title": "Autumn Leaves",
+      "artist": "Bill Evans",
+      "album": "Portrait in Jazz",
+      "duration": "5:05",
+      "cover": "https://picsum.photos/seed/autumn-leaves/80/80"
+    },
+    "s009": {
+      "songID": "s009",
+      "title": "So What",
+      "artist": "Miles Davis",
+      "album": "Kind of Blue",
+      "duration": "9:22",
+      "cover": "https://picsum.photos/seed/so-what/80/80"
+    },
+    "s010": {
+      "songID": "s010",
+      "title": "Toxic",
+      "artist": "Britney Spears",
+      "album": "In the Zone",
+      "duration": "3:00",
+      "cover": "https://picsum.photos/seed/toxic/80/80"
+    },
+    "s011": {
+      "songID": "s011",
+      "title": "Since U Been Gone",
+      "artist": "Kelly Clarkson",
+      "album": "Breakaway",
+      "duration": "3:08",
+      "cover": "https://picsum.photos/seed/since-u-been-gone/80/80"
+    },
+    "s012": {
+      "songID": "s012",
+      "title": "Umbrella",
+      "artist": "Rihanna",
+      "album": "Good Girl Gone Bad",
+      "duration": "4:35",
+      "cover": "https://picsum.photos/seed/umbrella/80/80"
+    },
+    "s013": {
+      "songID": "s013",
+      "title": "Weightless",
+      "artist": "Marconi Union",
+      "album": "Weightless",
+      "duration": "8:08",
+      "cover": "https://picsum.photos/seed/weightless/80/80"
+    },
+    "s014": {
+      "songID": "s014",
+      "title": "Intro",
+      "artist": "The xx",
+      "album": "xx",
+      "duration": "2:11",
+      "cover": "https://picsum.photos/seed/intro/80/80"
+    },
+    "s015": {
+      "songID": "s015",
+      "title": "Strobe",
+      "artist": "deadmau5",
+      "album": "For Lack of a Better Name",
+      "duration": "10:37",
+      "cover": "https://picsum.photos/seed/strobe/80/80"
+    },
+    "s016": {
+      "songID": "s016",
+      "title": "Blinding Lights",
+      "artist": "The Weeknd",
+      "album": "After Hours",
+      "duration": "3:20",
+      "cover": "https://picsum.photos/seed/blinding-lights/80/80"
+    },
+    "s017": {
+      "songID": "s017",
+      "title": "Electric Feel",
+      "artist": "MGMT",
+      "album": "Oracular Spectacular",
+      "duration": "3:49",
+      "cover": "https://picsum.photos/seed/electric-feel/80/80"
+    },
+    "s018": {
+      "songID": "s018",
+      "title": "Sun Models",
+      "artist": "ODESZA",
+      "album": "In Return",
+      "duration": "5:21",
+      "cover": "https://picsum.photos/seed/sun-models/80/80"
+    },
+    "s019": {
+      "songID": "s019",
+      "title": "Heat Waves",
+      "artist": "Glass Animals",
+      "album": "Dreamland",
+      "duration": "3:59",
+      "cover": "https://picsum.photos/seed/heat-waves/80/80"
+    },
+    "s020": {
+      "songID": "s020",
+      "title": "Motion Sickness",
+      "artist": "Phoebe Bridgers",
+      "album": "Stranger in the Alps",
+      "duration": "3:41",
+      "cover": "https://picsum.photos/seed/motion-sickness/80/80"
+    },
+    "s021": {
+      "songID": "s021",
+      "title": "Electric",
+      "artist": "Alina Baraz",
+      "album": "It Was Divine",
+      "duration": "3:26",
+      "cover": "https://picsum.photos/seed/electric/80/80"
+    },
+    "s022": {
+      "songID": "s022",
+      "title": "Starboy",
+      "artist": "The Weeknd",
+      "album": "Starboy",
+      "duration": "3:50",
+      "cover": "https://picsum.photos/seed/starboy/80/80"
+    },
+    "s023": {
+      "songID": "s023",
+      "title": "Don't Start Now",
+      "artist": "Dua Lipa",
+      "album": "Future Nostalgia",
+      "duration": "3:03",
+      "cover": "https://picsum.photos/seed/dont-start-now/80/80"
+    },
+    "s024": {
+      "songID": "s024",
+      "title": "good 4 u",
+      "artist": "Olivia Rodrigo",
+      "album": "SOUR",
+      "duration": "2:58",
+      "cover": "https://picsum.photos/seed/good-4-u/80/80"
+    },
+    "s025": {
+      "songID": "s025",
+      "title": "No Diggity",
+      "artist": "Blackstreet ft. Dr. Dre",
+      "album": "Another Level",
+      "duration": "5:06",
+      "cover": "https://picsum.photos/seed/no-diggity/80/80"
+    },
+    "s026": {
+      "songID": "s026",
+      "title": "Waterfalls",
+      "artist": "TLC",
+      "album": "CrazySexyCool",
+      "duration": "4:39",
+      "cover": "https://picsum.photos/seed/waterfalls/80/80"
+    },
+    "s027": {
+      "songID": "s027",
+      "title": "Creep",
+      "artist": "TLC",
+      "album": "CrazySexyCool",
+      "duration": "4:29",
+      "cover": "https://picsum.photos/seed/creep/80/80"
+    },
+    "s028": {
+      "songID": "s028",
+      "title": "On Bended Knee",
+      "artist": "Boyz II Men",
+      "album": "II",
+      "duration": "4:05",
+      "cover": "https://picsum.photos/seed/bended-knee/80/80"
+    },
+    "s029": {
+      "songID": "s029",
+      "title": "Fantasy",
+      "artist": "Mariah Carey",
+      "album": "Daydream",
+      "duration": "4:04",
+      "cover": "https://picsum.photos/seed/fantasy/80/80"
+    },
+    "s030": {
+      "songID": "s030",
+      "title": "Shape of You",
+      "artist": "Ed Sheeran",
+      "album": "÷ (Divide)",
+      "duration": "3:53",
+      "cover": "https://picsum.photos/seed/shape-of-you/80/80"
+    },
+    "s031": {
+      "songID": "s031",
+      "title": "Uptown Funk",
+      "artist": "Mark Ronson ft. Bruno Mars",
+      "album": "Uptown Special",
+      "duration": "4:30",
+      "cover": "https://picsum.photos/seed/uptown-funk/80/80"
+    },
+    "s032": {
+      "songID": "s032",
+      "title": "Someone Like You",
+      "artist": "Adele",
+      "album": "21",
+      "duration": "4:45",
+      "cover": "https://picsum.photos/seed/someone-like-you/80/80"
+    },
+    "s033": {
+      "songID": "s033",
+      "title": "Counting Stars",
+      "artist": "OneRepublic",
+      "album": "Native",
+      "duration": "4:17",
+      "cover": "https://picsum.photos/seed/counting-stars/80/80"
+    },
+    "s034": {
+      "songID": "s034",
+      "title": "Radioactive",
+      "artist": "Imagine Dragons",
+      "album": "Night Visions",
+      "duration": "3:06",
+      "cover": "https://picsum.photos/seed/radioactive/80/80"
+    },
+    "s035": {
+      "songID": "s035",
+      "title": "Happy",
+      "artist": "Pharrell Williams",
+      "album": "G I R L",
+      "duration": "3:53",
+      "cover": "https://picsum.photos/seed/happy/80/80"
+    }
+  },
   "playlists": [
     {
       "playlistID": "p001",
@@ -8,30 +290,9 @@
       "likeCount": 1,
       "liked": true,
       "songs": [
-        {
-          "songID": "s001",
-          "title": "Ocean Blue",
-          "artist": "Ocean",
-          "album": "Don't Smile at Me",
-          "duration": "3:25",
-          "cover": "https://picsum.photos/seed/ocean-eyes/80/80"
-        },
-        {
-          "songID": "s002",
-          "title": "Pink + White",
-          "artist": "Frank Ocean",
-          "album": "Blonde",
-          "duration": "3:05",
-          "cover": "https://picsum.photos/seed/pink-white/80/80"
-        },
-        {
-          "songID": "s003",
-          "title": "Snooze",
-          "artist": "SZA",
-          "album": "SOS",
-          "duration": "3:21",
-          "cover": "https://picsum.photos/seed/snooze/80/80"
-        }
+        "s001",
+        "s002",
+        "s003"
       ]
     },
     {
@@ -39,101 +300,12 @@
       "name": "Workout Hits",
       "cover": "https://picsum.photos/seed/workout-hits/420/240",
       "author": "Kai Johnson",
-      "likeCount": 13,
-      "liked": true,
-      "songs": [
-        {
-          "songID": "s004",
-          "title": "Levitating",
-          "artist": "Dua Lipa",
-          "album": "Future Nostalgia",
-          "duration": "3:23",
-          "cover": "https://picsum.photos/seed/levitating/80/80"
-        },
-        {
-          "songID": "s005",
-          "title": "Paint The Town Red",
-          "artist": "Doja Cat",
-          "album": "Scarlet",
-          "duration": "3:50",
-          "cover": "https://picsum.photos/seed/paint-town-red/80/80"
-        },
-        {
-          "songID": "s006",
-          "title": "God's Plan",
-          "artist": "Drake",
-          "album": "Scorpion",
-          "duration": "3:19",
-          "cover": "https://picsum.photos/seed/gods-plan/80/80"
-        }
-      ]
-    },
-    {
-      "playlistID": "p003",
-      "name": "Coffee Jazz",
-      "cover": "https://picsum.photos/seed/coffee-jazz/420/240",
-      "author": "Mia Chen",
-      "likeCount": 8,
+      "likeCount": 12,
       "liked": false,
       "songs": [
-        {
-          "songID": "s007",
-          "title": "Take Five",
-          "artist": "Dave Brubeck",
-          "album": "Time Out",
-          "duration": "5:24",
-          "cover": "https://picsum.photos/seed/take-five/80/80"
-        },
-        {
-          "songID": "s008",
-          "title": "Autumn Leaves",
-          "artist": "Bill Evans",
-          "album": "Portrait in Jazz",
-          "duration": "5:05",
-          "cover": "https://picsum.photos/seed/autumn-leaves/80/80"
-        },
-        {
-          "songID": "s009",
-          "title": "So What",
-          "artist": "Miles Davis",
-          "album": "Kind of Blue",
-          "duration": "9:22",
-          "cover": "https://picsum.photos/seed/so-what/80/80"
-        }
-      ]
-    },
-    {
-      "playlistID": "p004",
-      "name": "Throwback Pop",
-      "cover": "https://picsum.photos/seed/throwback-pop/420/240",
-      "author": "Ari Brooks",
-      "likeCount": 18,
-      "liked": true,
-      "songs": [
-        {
-          "songID": "s010",
-          "title": "Toxic",
-          "artist": "Britney Spears",
-          "album": "In the Zone",
-          "duration": "3:00",
-          "cover": "https://picsum.photos/seed/toxic/80/80"
-        },
-        {
-          "songID": "s011",
-          "title": "Since U Been Gone",
-          "artist": "Kelly Clarkson",
-          "album": "Breakaway",
-          "duration": "3:08",
-          "cover": "https://picsum.photos/seed/since-u-been-gone/80/80"
-        },
-        {
-          "songID": "s012",
-          "title": "Umbrella",
-          "artist": "Rihanna",
-          "album": "Good Girl Gone Bad",
-          "duration": "4:35",
-          "cover": "https://picsum.photos/seed/umbrella/80/80"
-        }
+        "s004",
+        "s005",
+        "s006"
       ]
     },
     {
@@ -141,67 +313,12 @@
       "name": "Coding Focus",
       "cover": "https://picsum.photos/seed/coding-focus/420/240",
       "author": "Noah Kim",
-      "likeCount": 24,
-      "liked": true,
-      "songs": [
-        {
-          "songID": "s013",
-          "title": "Weightless",
-          "artist": "Marconi Union",
-          "album": "Weightless",
-          "duration": "8:08",
-          "cover": "https://picsum.photos/seed/weightless/80/80"
-        },
-        {
-          "songID": "s014",
-          "title": "Intro",
-          "artist": "The xx",
-          "album": "xx",
-          "duration": "2:11",
-          "cover": "https://picsum.photos/seed/intro/80/80"
-        },
-        {
-          "songID": "s015",
-          "title": "Strobe",
-          "artist": "deadmau5",
-          "album": "For Lack of a Better Name",
-          "duration": "10:37",
-          "cover": "https://picsum.photos/seed/strobe/80/80"
-        }
-      ]
-    },
-    {
-      "playlistID": "p006",
-      "name": "Sunset Drive",
-      "cover": "https://picsum.photos/seed/sunset-drive/420/240",
-      "author": "Zoe Carter",
-      "likeCount": 9,
+      "likeCount": 23,
       "liked": false,
       "songs": [
-        {
-          "songID": "s016",
-          "title": "Blinding Lights",
-          "artist": "The Weeknd",
-          "album": "After Hours",
-          "duration": "3:20",
-          "cover": "https://picsum.photos/seed/blinding-lights/80/80"
-        },
-        {
-          "songID": "s017",
-          "title": "Electric Feel",
-          "artist": "MGMT",
-          "album": "Oracular Spectacular",
-          "duration": "3:49",
-          "cover": "https://picsum.photos/seed/electric-feel/80/80"
-        },
-        {
-          "songID": "s018",
-          "title": "Sun Models",
-          "artist": "ODESZA",
-          "album": "In Return",
-          "duration": "5:21",
-          "cover": "https://picsum.photos/seed/sun-models/80/80"
-        }
+        "s013",
+        "s014",
+        "s015"
       ]
     },
     {
@@ -209,33 +326,12 @@
       "name": "Indie Discovery",
       "cover": "https://picsum.photos/seed/indie-discovery/420/240",
       "author": "Sam Rivera",
-      "likeCount": 12,
-      "liked": true,
+      "likeCount": 11,
+      "liked": false,
       "songs": [
-        {
-          "songID": "s019",
-          "title": "Heat Waves",
-          "artist": "Glass Animals",
-          "album": "Dreamland",
-          "duration": "3:59",
-          "cover": "https://picsum.photos/seed/heat-waves/80/80"
-        },
-        {
-          "songID": "s020",
-          "title": "Motion Sickness",
-          "artist": "Phoebe Bridgers",
-          "album": "Stranger in the Alps",
-          "duration": "3:41",
-          "cover": "https://picsum.photos/seed/motion-sickness/80/80"
-        },
-        {
-          "songID": "s021",
-          "title": "Electric",
-          "artist": "Alina Baraz",
-          "album": "It Was Divine",
-          "duration": "3:26",
-          "cover": "https://picsum.photos/seed/electric/80/80"
-        }
+        "s019",
+        "s020",
+        "s021"
       ]
     },
     {
@@ -243,33 +339,12 @@
       "name": "Night Energy",
       "cover": "https://picsum.photos/seed/night-energy/420/240",
       "author": "Leah Patel",
-      "likeCount": 15,
-      "liked": true,
+      "likeCount": 14,
+      "liked": false,
       "songs": [
-        {
-          "songID": "s022",
-          "title": "Starboy",
-          "artist": "The Weeknd",
-          "album": "Starboy",
-          "duration": "3:50",
-          "cover": "https://picsum.photos/seed/starboy/80/80"
-        },
-        {
-          "songID": "s023",
-          "title": "Don't Start Now",
-          "artist": "Dua Lipa",
-          "album": "Future Nostalgia",
-          "duration": "3:03",
-          "cover": "https://picsum.photos/seed/dont-start-now/80/80"
-        },
-        {
-          "songID": "s024",
-          "title": "good 4 u",
-          "artist": "Olivia Rodrigo",
-          "album": "SOUR",
-          "duration": "2:58",
-          "cover": "https://picsum.photos/seed/good-4-u/80/80"
-        }
+        "s022",
+        "s023",
+        "s024"
       ]
     },
     {
@@ -280,46 +355,37 @@
       "likeCount": 41,
       "liked": false,
       "songs": [
-        {
-          "songID": "s025",
-          "title": "No Diggity",
-          "artist": "Blackstreet ft. Dr. Dre",
-          "album": "Another Level",
-          "duration": "5:06",
-          "cover": "https://picsum.photos/seed/no-diggity/80/80"
-        },
-        {
-          "songID": "s026",
-          "title": "Waterfalls",
-          "artist": "TLC",
-          "album": "CrazySexyCool",
-          "duration": "4:39",
-          "cover": "https://picsum.photos/seed/waterfalls/80/80"
-        },
-        {
-          "songID": "s027",
-          "title": "Creep",
-          "artist": "TLC",
-          "album": "CrazySexyCool",
-          "duration": "4:29",
-          "cover": "https://picsum.photos/seed/creep/80/80"
-        },
-        {
-          "songID": "s028",
-          "title": "On Bended Knee",
-          "artist": "Boyz II Men",
-          "album": "II",
-          "duration": "4:05",
-          "cover": "https://picsum.photos/seed/bended-knee/80/80"
-        },
-        {
-          "songID": "s029",
-          "title": "Fantasy",
-          "artist": "Mariah Carey",
-          "album": "Daydream",
-          "duration": "4:04",
-          "cover": "https://picsum.photos/seed/fantasy/80/80"
-        }
+        "s025",
+        "s026",
+        "s027",
+        "s028",
+        "s029"
+      ]
+    },
+    {
+      "playlistID": "p011",
+      "name": "Emotional Ballads",
+      "cover": "https://picsum.photos/seed/emotional-ballads/420/240",
+      "author": "Alex Turner",
+      "likeCount": 17,
+      "liked": false,
+      "songs": [
+        "s032",
+        "s002",
+        "s003"
+      ]
+    },
+    {
+      "playlistID": "p012",
+      "name": "Epic Anthems",
+      "cover": "https://picsum.photos/seed/epic-anthems/420/240",
+      "author": "Chris Evans",
+      "likeCount": 45,
+      "liked": true,
+      "songs": [
+        "s033",
+        "s034",
+        "s031"
       ]
     }
   ]
