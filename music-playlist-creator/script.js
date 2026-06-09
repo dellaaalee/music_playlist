@@ -8,6 +8,13 @@ const shuffleButton = document.getElementById("shuffleButton");
 const tabButtons = document.querySelectorAll(".tab-button");
 const appContent = document.querySelector(".app-content");
 
+// Search bar elements
+const searchToggle = document.getElementById("searchToggle");
+const searchBar = document.getElementById("searchBar");
+const searchInput = document.getElementById("searchInput");
+const searchButton = document.getElementById("searchButton");
+const clearButton = document.getElementById("clearButton");
+
 // Store fetched playlist data globally
 let playlistsData = [];
 
@@ -231,8 +238,20 @@ function renderFeaturedView() {
 }
 
 // Render All playlists view
-function renderAllView() {
-    const playlistCards = playlistsData.map(playlist => `
+function renderAllView(filteredPlaylists = null) {
+    // Use filtered playlists if provided, otherwise use all playlists
+    const playlistsToRender = filteredPlaylists || playlistsData;
+
+    if (playlistsToRender.length === 0) {
+        appContent.innerHTML = `
+            <div class="no-results">
+                <p>No playlists found matching your search.</p>
+            </div>
+        `;
+        return;
+    }
+
+    const playlistCards = playlistsToRender.map(playlist => `
         <article class="playlist-card" data-playlist-id="${playlist.playlistID}">
             <img class="cover-image" src="${playlist.cover}" alt="Cover art for ${playlist.name} playlist">
             <h2 class="playlist-title">${playlist.name}</h2>
@@ -366,6 +385,79 @@ tabButtons.forEach((button, index) => {
             renderAllView();
         }
     });
+});
+
+/**
+ * Search playlists by name or author
+ *
+ * Takes in: searchTerm (string) - the search query
+ * Returns: array of playlists that match the search term
+ * Searches through: playlist name and author fields
+ */
+function searchPlaylists(searchTerm) {
+    if (!searchTerm || searchTerm.trim() === "") {
+        return playlistsData;
+    }
+
+    const query = searchTerm.toLowerCase().trim();
+
+    return playlistsData.filter(playlist => {
+        const nameMatch = playlist.name.toLowerCase().includes(query);
+        const authorMatch = playlist.author.toLowerCase().includes(query);
+        return nameMatch || authorMatch;
+    });
+}
+
+/**
+ * Perform search and update the display
+ */
+function performSearch() {
+    const searchTerm = searchInput.value.trim();
+    console.log("Searching for:", searchTerm);
+
+    // Get filtered results
+    const results = searchPlaylists(searchTerm);
+    console.log("Found", results.length, "playlists");
+
+    // Make sure "All" tab is active when searching
+    tabButtons.forEach((btn) => btn.classList.remove("active"));
+    tabButtons[1].classList.add("active"); // Activate "All" tab
+
+    // Render filtered results
+    renderAllView(results);
+}
+
+// Search bar toggle
+searchToggle.addEventListener("click", () => {
+    searchBar.classList.toggle("hidden");
+
+    // Focus on input when search bar opens
+    if (!searchBar.classList.contains("hidden")) {
+        setTimeout(() => {
+            searchInput.focus();
+        }, 100);
+    }
+});
+
+// Clear button functionality
+clearButton.addEventListener("click", () => {
+    searchInput.value = "";
+    searchInput.focus();
+
+    // Reset to show all playlists
+    renderAllView();
+});
+
+// Search button functionality
+searchButton.addEventListener("click", () => {
+    performSearch();
+});
+
+// Allow Enter key to trigger search
+searchInput.addEventListener("keypress", (event) => {
+    if (event.key === "Enter") {
+        performSearch();
+    }
 });
 
 // Initialize app - load data and render initial view

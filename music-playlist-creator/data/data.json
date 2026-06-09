@@ -175,8 +175,8 @@
       "name": "Sunset Drive",
       "cover": "https://picsum.photos/seed/sunset-drive/420/240",
       "author": "Zoe Carter",
-      "likeCount": 10,
-      "liked": true,
+      "likeCount": 9,
+      "liked": false,
       "songs": [
         {
           "songID": "s016",

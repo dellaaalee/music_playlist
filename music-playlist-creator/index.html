@@ -9,11 +9,24 @@
 <body>
     <header class="app-header">
         <h1>Albums</h1>
-        <nav class="tabs" aria-label="Playlist view tabs">
-            <button type="button" class="tab-button" data-view="featured">Featured</button>
-            <button type="button" class="tab-button active" data-view="all">All</button>
-        </nav>
+        <div class="header-controls">
+            <button type="button" id="searchToggle" class="search-toggle-button" aria-label="Toggle search">
+                <img src="assets/img/search_icon.png" alt="Search" class="search-icon">
+            </button>
+            <nav class="tabs" aria-label="Playlist view tabs">
+                <button type="button" class="tab-button" data-view="featured">Featured</button>
+                <button type="button" class="tab-button active" data-view="all">All</button>
+            </nav>
+        </div>
     </header>
+
+    <div id="searchBar" class="search-bar hidden">
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-input" placeholder="Search playlists..." aria-label="Search playlists">
+            <button type="button" id="searchButton" class="search-button">Search</button>
+            <button type="button" id="clearButton" class="clear-button">Clear</button>
+        </div>
+    </div>
 
     <main class="app-content">
         <!-- Content will be dynamically populated from data.json via script.js -->

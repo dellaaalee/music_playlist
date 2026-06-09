@@ -29,6 +29,12 @@ body {
     letter-spacing: -0.5px;
 }
 
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
 .tabs {
     display: flex;
     gap: 8px;
@@ -54,6 +60,129 @@ body {
 .tab-button.active {
     background-color: #000000;
     color: #ffffff;
+}
+
+/* Search Toggle Button */
+.search-toggle-button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+}
+
+.search-toggle-button:hover {
+    background-color: #f0f0f0;
+}
+
+.search-toggle-button:active {
+    background-color: #e0e0e0;
+}
+
+.search-icon {
+    width: 20px;
+    height: 20px;
+    display: block;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.search-toggle-button:hover .search-icon {
+    opacity: 1;
+}
+
+/* Search Bar */
+.search-bar {
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #e5e5e5;
+    padding: 16px 48px;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    max-height: 80px;
+}
+
+.search-bar.hidden {
+    max-height: 0;
+    padding: 0 48px;
+    opacity: 0;
+}
+
+.search-container {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    max-width: 800px;
+}
+
+.search-input {
+    flex: 1;
+    padding: 10px 16px;
+    font-size: 15px;
+    border: 1px solid #d0d0d0;
+    border-radius: 20px;
+    outline: none;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, Arial, sans-serif;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-input:focus {
+    border-color: #000000;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+}
+
+.search-input::placeholder {
+    color: #999999;
+}
+
+.search-button,
+.clear-button {
+    border: none;
+    background-color: #000000;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.search-button:hover,
+.clear-button:hover {
+    background-color: #2a2a2a;
+    transform: translateY(-1px);
+}
+
+.search-button:active,
+.clear-button:active {
+    transform: translateY(0);
+}
+
+.clear-button {
+    background-color: #666666;
+}
+
+.clear-button:hover {
+    background-color: #4d4d4d;
+}
+
+/* No results message */
+.no-results {
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.no-results p {
+    font-size: 18px;
+    color: #999999;
+    margin: 0;
 }
 
 .app-content {

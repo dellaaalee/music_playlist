@@ -91,7 +91,28 @@ Output format: What should the response look like? (e.g., 2–3 sentence descrip
 Constraints: What should the model avoid? (e.g., don't list the songs individually, don't use generic marketing language)
 Failure behavior: What should the UI show if the API call fails or the model doesn't respond?
 
+constraints:
+- do not mention any specific songs
+
+
+failure message: summary unavilable - try again in a moment
+const FAILURE_MESSAGE = "summary unavilable - try again in a moment";
+
+disable the button before the function is finished
+
+
 ### Decisions Log
 Milestone 1:
+
+
+
+
+### stretch features
+#### search functionality
+users are allowed to filter the playlist by clicking on the magnifying glasses icon next to the header and "featured" and "all" tab. When the user clicks on the magnifyihng glasses, the search bar will show up. The search bar will have text input field, search button, and clear button. 
+Playlists matches the search query in the text input are displayed in a grid view when the user, the data search is through data.json, presses the enter or clicks the search button. The search is done through either playlist name or playlist author. 
+If there is no result, it will display "No playlist found matching your search"
+It will automatically switch to "all" tab when searching function is used. 
+
 
 

@@ -50,24 +50,24 @@ Estimated time spent: **#** hours spent in total
       - [x] a playlist with a like count of 0
       - [x] a playlist with a non-zero like count
 
-- [ ] **Shuffle Songs**
-  - [ ] Enable users to shuffle the songs within a playlist using a shuffle button in the playlist's detail modal.
-  - [ ] When the shuffle button is clicked, the playlist's songs should display in a different order.
-  - [ ] **VIDEO WALKTHROUGH SPECIAL INSTRUCTIONS:** In addition to showcasing the above features, for ease of grading, please show yourself shuffling the same playlist more than once. 
+- [x] **Shuffle Songs**
+  - [x] Enable users to shuffle the songs within a playlist using a shuffle button in the playlist's detail modal.
+  - [x] When the shuffle button is clicked, the playlist's songs should display in a different order.
+  - [x] **VIDEO WALKTHROUGH SPECIAL INSTRUCTIONS:** In addition to showcasing the above features, for ease of grading, please show yourself shuffling the same playlist more than once. 
   
-- [ ] **Featured Page**
-  - [ ] Application includes a dedicated page that randomly selects and displays a playlist, showing the playlist’s:
-    - [ ] Playlist Image
-    - [ ] Playlist Name
-    - [ ] List of songs, including each song's:
-      - [ ] Title
-      - [ ] Artist
-      - [ ] Duration
-  - [ ] When the page is refreshed or reloaded, a new random playlist is displayed
+- [x] **Featured Page**
+  - [x] Application includes a dedicated page that randomly selects and displays a playlist, showing the playlist’s:
+    - [x] Playlist Image
+    - [x] Playlist Name
+    - [x] List of songs, including each song's:
+      - [x] Title
+      - [x] Artist
+      - [x] Duration
+  - [x] When the page is refreshed or reloaded, a new random playlist is displayed
     - For example, navigating to the all playlists page and then back to the featured playlist page should result in a new random playlist being displayed
     - Note that because your algorithm will not be truly random, it is possible that the same playlist will feature twice in a row. 
-    - [ ] **VIDEO WALKTHROUGH SPECIAL INSTRUCTIONS:** In addition to showcasing the above features, for ease of grading, please show yourself refreshing the featured page more than once. 
-  - [ ] Application includes a navigation bar or some other mechanism such that users can navigate to the page with all playlists from the featured page and vice versa without using the browser's back and forward buttons. 
+    - [x] **VIDEO WALKTHROUGH SPECIAL INSTRUCTIONS:** In addition to showcasing the above features, for ease of grading, please show yourself refreshing the featured page more than once. 
+  - [x] Application includes a navigation bar or some other mechanism such that users can navigate to the page with all playlists from the featured page and vice versa without using the browser's back and forward buttons. 
 
 - [ ] **Planning Documentation**
   - [ ] Repository includes a `planning.md` file with:
@@ -115,20 +115,20 @@ Estimated time spent: **#** hours spent in total
   - [ ] Add a delete button to each playlist tile within the grid view.
   - [ ] When clicked, the playlist is removed from the playlist grid view.
 
-- [ ] **Search Functionality**
-  - [ ] Implement a search bar that allows users to filter playlists by:
-    - [ ] Name 
-    - [ ] Author
-  - [ ] The search bar should include:
-    - [ ] Text input field
-    - [ ] Submit/Search Button
-    - [ ] Clear Button
-  - [ ] Playlists matching the search query in the text input are displayed in a grid view when the user:
-    - [ ] Presses the Enter Key
-    - [ ] Clicks the Submit/Search Button 
-  - [ ] User can click the clear button. When clicked:
-    - [ ] All text in the text input field is deleted
-    - [ ] All playlists in the `data.json` file are displayed in a grid view
+- [x] **Search Functionality**
+  - [x] Implement a search bar that allows users to filter playlists by:
+    - [x] Name 
+    - [x] Author
+  - [x] The search bar should include:
+    - [x] Text input field
+    - [x] Submit/Search Button
+    - [x] Clear Button
+  - [x] Playlists matching the search query in the text input are displayed in a grid view when the user:
+    - [x] Presses the Enter Key
+    - [x] Clicks the Submit/Search Button 
+  - [x] User can click the clear button. When clicked:
+    - [x] All text in the text input field is deleted
+    - [x] All playlists in the `data.json` file are displayed in a grid view
     - [ ] **Optional:** If the Add Playlist, Edit Existing Playlist, or Delete Playlist stretch features were implemented:
       - [ ] If users can add a playlist, added playlists should be included in search results.
       - [ ] If users can edit a playlist, search results should reflect the latest edits to each playlist.
