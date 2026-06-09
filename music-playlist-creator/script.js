@@ -120,19 +120,13 @@ function shuffleArray(array) {
  * Fields used: name, cover, author, songs (array with title, artist, album, duration, cover)
  */
 function openModal(playlistID) {
-    console.log('Opening modal for playlistID:', playlistID);
-    console.log('Available playlists:', playlistsData);
-
     // Find the playlist in the loaded data
     const playlist = playlistsData.find(p => p.playlistID === playlistID);
 
     if (!playlist) {
         console.error('Playlist not found:', playlistID);
-        console.error('Available playlist IDs:', playlistsData.map(p => p.playlistID));
         return;
     }
-
-    console.log('Found playlist:', playlist);
 
     // Update modal with playlist data from data.json
     playlistName.textContent = playlist.name;
@@ -158,15 +152,15 @@ function openModal(playlistID) {
  * DOM element it updates: #songList (re-renders with shuffled songs)
  */
 function setupShuffleButton(playlist) {
+    // Get fresh reference to the shuffle button
+    const currentShuffleButton = document.getElementById("shuffleButton");
+
     // Remove any existing listeners by cloning the button
-    const newShuffleButton = shuffleButton.cloneNode(true);
-    shuffleButton.parentNode.replaceChild(newShuffleButton, shuffleButton);
+    const newShuffleButton = currentShuffleButton.cloneNode(true);
+    currentShuffleButton.parentNode.replaceChild(newShuffleButton, currentShuffleButton);
 
-    // Update the global reference
-    const updatedShuffleButton = document.getElementById("shuffleButton");
-
-    // Add click listener
-    updatedShuffleButton.addEventListener("click", (event) => {
+    // Add click listener to the new button
+    newShuffleButton.addEventListener("click", (event) => {
         event.preventDefault();
 
         // Shuffle the songs
@@ -271,7 +265,7 @@ function renderAllView(filteredPlaylists = null) {
         </section>
     `;
 
-    attachCardListeners();
+    // Event delegation is set up globally, no need to attach listeners here
 }
 
 // Toggle like status for a playlist
@@ -349,28 +343,6 @@ async function toggleLike(playlistID) {
 
         alert('Failed to save like. Please try again.');
     }
-}
-
-// Attach click listeners to playlist cards
-function attachCardListeners() {
-    const cards = document.querySelectorAll(".playlist-card");
-
-    cards.forEach((card) => {
-        // Handle like button clicks
-        const likeButton = card.querySelector(".like-button");
-        likeButton.addEventListener("click", (event) => {
-            event.preventDefault(); // Prevent default button behavior
-            event.stopPropagation(); // Prevent card click from firing
-            const playlistID = likeButton.dataset.playlistId;
-            toggleLike(playlistID);
-        });
-
-        // Handle card clicks (open modal)
-        card.addEventListener("click", () => {
-            const playlistID = card.dataset.playlistId;
-            openModal(playlistID);
-        });
-    });
 }
 
 // Tab switching
@@ -460,9 +432,42 @@ searchInput.addEventListener("keypress", (event) => {
     }
 });
 
+// Set up global event delegation for playlist cards (only once)
+function setupCardEventDelegation() {
+
+    appContent.addEventListener("click", (event) => {
+        // Check if clicked on like button or like container first
+        const likeButton = event.target.closest(".like-button");
+        const likeContainer = event.target.closest(".like-container");
+
+        if (likeButton) {
+            event.preventDefault();
+            event.stopPropagation();
+            const playlistID = likeButton.dataset.playlistId;
+            toggleLike(playlistID);
+            return;
+        }
+
+        // Don't open modal if clicking anywhere in the like container
+        if (likeContainer) {
+            return;
+        }
+
+        // Check if clicked on a playlist card
+        const card = event.target.closest(".playlist-card");
+        if (card) {
+            const playlistID = card.dataset.playlistId;
+            if (playlistID) {
+                openModal(playlistID);
+            }
+        }
+    });
+}
+
 // Initialize app - load data and render initial view
 async function initializeApp() {
     await loadPlaylistData();
+    setupCardEventDelegation(); // Set up event delegation once
     renderAllView(); // Start with "All" tab active
 }
 

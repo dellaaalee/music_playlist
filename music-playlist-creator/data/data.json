@@ -4,14 +4,14 @@
       "playlistID": "p001",
       "name": "Della Playlist",
       "cover": "https://picsum.photos/seed/chill-vibes/420/240",
-      "author": "DJ Luna",
-      "likeCount": 0,
-      "liked": false,
+      "author": "Luna",
+      "likeCount": 1,
+      "liked": true,
       "songs": [
         {
           "songID": "s001",
           "title": "Ocean Blue",
-          "artist": "Billie Ocean",
+          "artist": "Ocean",
           "album": "Don't Smile at Me",
           "duration": "3:25",
           "cover": "https://picsum.photos/seed/ocean-eyes/80/80"
@@ -73,8 +73,8 @@
       "name": "Coffee Jazz",
       "cover": "https://picsum.photos/seed/coffee-jazz/420/240",
       "author": "Mia Chen",
-      "likeCount": 9,
-      "liked": true,
+      "likeCount": 8,
+      "liked": false,
       "songs": [
         {
           "songID": "s007",
