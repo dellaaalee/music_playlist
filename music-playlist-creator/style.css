@@ -1218,6 +1218,12 @@ footer p {
         margin-bottom: 24px;
     }
 
+    .modal-header-text {
+        align-items: center;
+        text-align: center;
+        width: 100%;
+    }
+
     #playlistImage {
         width: 100%;
         max-width: 240px;
@@ -1234,9 +1240,11 @@ footer p {
 
     .modal-buttons {
         flex-direction: column;
-        width: 100%;
+        width: auto;
         max-width: 240px;
         align-self: center;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .shuffle-button,

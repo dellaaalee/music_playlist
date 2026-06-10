@@ -1,24 +1,29 @@
 ## Music Playlist Explorer — Planning Spec
 
 ### Data Shape
-Playlist:
-    - playlistID (string) — unique identifier used to reference a specific playlist
-    - name (string) — the title of the playlist shown on the card and in the modal
-    - cover (image) — path or URL to the playlist's cover art image
-    - author (string) — name of the creator who made the playlist
-    - likeCount (number) — number of likes the playlist has received
-    - liked (boolean) — whether the current user has liked this playlist
-    - songs (array of song) — the list of song objects that belong to this playlist
+### Playlist
 
-song:
-    - songID (string) — unique identifier used to reference a specific song
-    - title (string) — the name of the song
-    - artist (string) — name of the performing artist
-    - album (string) — name of the album the song appears on
-    - duration (string, mm:ss) — length of the song in minutes and seconds
-    - cover (image/string URL) — path or URL to the song's thumbnail/cover art
+| Field | Type | Description |
+|-------|------|-------------|
+| `playlistID` | `string` | Unique identifier used to reference a specific playlist |
+| `name` | `string` | The title of the playlist shown on the card and in the modal |
+| `cover` | `image` | Path or URL to the playlist's cover art image |
+| `author` | `string` | Name of the creator who made the playlist |
+| `likeCount` | `number` | Number of likes the playlist has received |
+| `liked` | `boolean` | Whether the current user has liked this playlist |
+| `songs` | `Song[]` | The list of song objects that belong to this playlist |
 
+---
+### Song
 
+| Field | Type | Description |
+|-------|------|-------------|
+| `songID` | `string` | Unique identifier used to reference a specific song |
+| `title` | `string` | The name of the song |
+| `artist` | `string` | Name of the performing artist |
+| `album` | `string` | Name of the album the song appears on |
+| `duration` | `string` (mm:ss) | Length of the song in minutes and seconds |
+| `cover` | `string` (URL) | Path or URL to the song's thumbnail/cover art |
 
 ### UI and Interaction Rules
 What are the main sections of the homepage?

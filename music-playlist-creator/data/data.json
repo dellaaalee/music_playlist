@@ -286,17 +286,17 @@
       "playlistID": "p002",
       "name": "Workout Hits",
       "cover": "https://picsum.photos/seed/workout-hits/420/240",
-      "author": "Kai Johnson",
+      "author": "Audrey",
       "likeCount": 12,
       "liked": false,
       "songs": [
-        "s002",
-        "s003",
         "s004",
         "s005",
         "s001",
         "s007",
-        "s008"
+        "s008",
+        "s031",
+        "s002"
       ]
     },
     {
@@ -322,8 +322,8 @@
       "name": "Night Energy",
       "cover": "https://picsum.photos/seed/night-energy/420/240",
       "author": "Leah Patel",
-      "likeCount": 14,
-      "liked": false,
+      "likeCount": 15,
+      "liked": true,
       "songs": [
         "s023",
         "s024"
@@ -331,14 +331,27 @@
     },
     {
       "playlistID": "p009",
-      "name": "h",
-      "cover": "https://picsum.photos/seed/h/420/240",
-      "author": "n",
+      "name": "della",
+      "cover": "https://picsum.photos/seed/della/420/240",
+      "author": "della",
       "likeCount": 1,
       "liked": true,
       "songs": [
-        "s001",
-        "s002"
+        "s022",
+        "s021"
+      ]
+    },
+    {
+      "playlistID": "p010",
+      "name": "audreys playlist",
+      "cover": "https://picsum.photos/seed/audreys-playlist/420/240",
+      "author": "author",
+      "likeCount": 0,
+      "liked": false,
+      "songs": [
+        "s007",
+        "s006",
+        "s005"
       ]
     }
   ]
