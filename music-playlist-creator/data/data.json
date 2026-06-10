@@ -283,43 +283,13 @@
   },
   "playlists": [
     {
-      "playlistID": "p001",
-      "name": "Della Playlist",
-      "cover": "https://picsum.photos/seed/chill-vibes/420/240",
-      "author": "Luna",
-      "likeCount": 1,
-      "liked": true,
-      "songs": [
-        "s001",
-        "s002",
-        "s003"
-      ]
-    },
-    {
       "playlistID": "p002",
       "name": "Workout Hits",
       "cover": "https://picsum.photos/seed/workout-hits/420/240",
       "author": "Kai Johnson",
       "likeCount": 12,
       "liked": false,
-      "songs": [
-        "s004",
-        "s005",
-        "s006"
-      ]
-    },
-    {
-      "playlistID": "p005",
-      "name": "Coding Focus",
-      "cover": "https://picsum.photos/seed/coding-focus/420/240",
-      "author": "Noah Kim",
-      "likeCount": 23,
-      "liked": false,
-      "songs": [
-        "s013",
-        "s014",
-        "s015"
-      ]
+      "songs": []
     },
     {
       "playlistID": "p007",
@@ -331,7 +301,8 @@
       "songs": [
         "s019",
         "s020",
-        "s021"
+        "s021",
+        "s002"
       ]
     },
     {
@@ -342,50 +313,8 @@
       "likeCount": 14,
       "liked": false,
       "songs": [
-        "s022",
         "s023",
         "s024"
-      ]
-    },
-    {
-      "playlistID": "p009",
-      "name": "90's R&B",
-      "cover": "https://picsum.photos/seed/90s-rnb/800/500",
-      "author": "DJ Luna",
-      "likeCount": 41,
-      "liked": false,
-      "songs": [
-        "s025",
-        "s026",
-        "s027",
-        "s028",
-        "s029"
-      ]
-    },
-    {
-      "playlistID": "p011",
-      "name": "Emotional Ballads",
-      "cover": "https://picsum.photos/seed/emotional-ballads/420/240",
-      "author": "Alex Turner",
-      "likeCount": 17,
-      "liked": false,
-      "songs": [
-        "s032",
-        "s002",
-        "s003"
-      ]
-    },
-    {
-      "playlistID": "p012",
-      "name": "Epic Anthems",
-      "cover": "https://picsum.photos/seed/epic-anthems/420/240",
-      "author": "Chris Evans",
-      "likeCount": 45,
-      "liked": true,
-      "songs": [
-        "s033",
-        "s034",
-        "s031"
       ]
     }
   ]

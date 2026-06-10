@@ -79,17 +79,43 @@ The navgiation between featured page and all playlist page will be done through 
 
 #### get playlist description
 What does this function take in?
+The function takes in data from the current playlist (playlist name, song title, song artist, song album)
 What does it return?
+It returns a 1-2 sentence description of the playlist using the playlist data that the model generated
 What API does it call and with what prompt structure?
+google/gemma-3-27b-it:free
+
 What happens on error?
+On error, the fallback message will be returned
 
 ### AI Feature Spec (Milestone 8)
 Role: What role should the model play?
+the model should give a short 1-2 sentence description of the playlist given.
 Task: What is the model being asked to do? (generating a description for a music playlist based on its name, author, and song list)
+Generate the description for a music playlist based on its name, author, and song list.
+
 Inputs: What playlist data will you pass to the model?
-Output format: What should the response look like? (e.g., 2–3 sentence description that captures the vibe and theme of the playlist)
+playlist name, song title, song artist, song album should be passed in
+
+Output format: What should the response look like? 
+1-2 sentence description that captures the vibe and theme of the playlist. Mood (like melancholic, high energy)
+
 Constraints: What should the model avoid? (e.g., don't list the songs individually, don't use generic marketing language)
+- don't list the songs individual
+- don't list the playlist name, song title, song artist, song album or anything specific data that was passed in from the playlist
+- don't use generic marketing language
+- keep the description under 3 sentence
+- write it as a single, cohesive sentence. Do not use bullet points, numbered list, or hashtags. 
+
+
 Failure behavior: What should the UI show if the API call fails or the model doesn't respond?
+If the API call fails or the model doesn't respond, UI should show the fallback message of description unavilable - try again in a moment
+
+getPlaylistDescription function that takes a playlist object, constructs a prompt matching the AI feature spec, calls the openrouter API, and returns the model's response or fallback message ("description unavilable - try again in a moment"). 
+show a lading state while the request is in flight ("generating description")
+if the API call failes or the model returns an empty response, show the fallback message. 
+
+"get description" button. The get description is next to the shuffle button. The same line. The description will be generated under the album cover and song title and on top of song lists
 
 constraints:
 - do not mention any specific songs
@@ -126,10 +152,20 @@ If there is no result, it will display "No playlist found matching your search"
 It will automatically switch to "all" tab when searching function is used. 
 
 
-
-
 #### Delete Playlists
  Add a delete button to each playlist tile within the grid view.
  When clicked, the playlist is removed from the playlist grid view.
 
 when you click on the delete playlist, the data.json will delete the current playlist the modal is on. The playlist grid view will also update the rendering. 
+
+
+#### edit playlist
+when the user click on the edit playlist, the playlist name and author could also be changed, once they enter, it saves the result of the edit into the data.json
+when I click on the minus button on the edit playlist, if I click on the minus button associated with the song, delete the song from data.json
+When the user clicks on the add song after clicking the edit playlist button, a modal with all the songs should populate (from data.json), the user can click on each song to add to the playlist. 
+
+When we delete the song from the playlist, the song is deleted
+
+
+#### sorting playlist
+implment the sorting playlist feature. It should be placed on the top of the playlist below  the header/navbar. It should sort by and a drop down menu with "like count" and "A-Z". Sort the playlist based on the drop down list. The playlist should render and reorder based on the selected sorted view. Make sure to follow the rest of the design format. The sort function should only be visible in the "all" tab

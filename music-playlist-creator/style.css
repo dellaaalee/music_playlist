@@ -197,6 +197,55 @@ body {
     transform: translateY(-1px);
 }
 
+/* Sort Bar */
+.sort-bar {
+    background-color: #ffffff;
+    padding: 12px 48px;
+    display: none;
+}
+
+.sort-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    max-width: 800px;
+}
+
+.sort-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #666666;
+}
+
+.sort-select {
+    padding: 8px 32px 8px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    border: 1px solid #d0d0d0;
+    border-radius: 20px;
+    background-color: #ffffff;
+    color: #000000;
+    cursor: pointer;
+    outline: none;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, Arial, sans-serif;
+    transition: all 0.2s ease;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+}
+
+.sort-select:hover {
+    border-color: #000000;
+    background-color: #f9f9f9;
+}
+
+.sort-select:focus {
+    border-color: #000000;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+}
+
 .search-button:active,
 .clear-button:active {
     transform: translateY(0);
@@ -564,12 +613,46 @@ body {
     font-weight: 700;
     color: #000000;
     letter-spacing: -0.5px;
+    outline: none;
+    transition: background-color 0.2s ease, padding 0.2s ease;
+}
+
+#playlistName.editable {
+    background-color: rgba(0, 0, 0, 0.03);
+    padding: 4px 8px;
+    border-radius: 6px;
+    cursor: text;
+}
+
+#playlistName.editable:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+#playlistName.editable:focus {
+    background-color: rgba(0, 0, 0, 0.08);
 }
 
 #playlistCreator {
     margin: 0;
     font-size: 18px;
     color: #999999;
+    outline: none;
+    transition: background-color 0.2s ease, padding 0.2s ease;
+}
+
+#playlistCreator.editable {
+    background-color: rgba(0, 0, 0, 0.03);
+    padding: 4px 8px;
+    border-radius: 6px;
+    cursor: text;
+}
+
+#playlistCreator.editable:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+#playlistCreator.editable:focus {
+    background-color: rgba(0, 0, 0, 0.08);
 }
 
 .modal-buttons {
@@ -632,6 +715,24 @@ body {
     width: 18px;
     height: 18px;
     display: block;
+}
+
+/* AI Summary Text */
+.ai-summary-text {
+    margin: 8px 0 0 0;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #555555;
+    max-width: 520px;
+}
+
+.ai-summary-text.hidden {
+    display: none;
+}
+
+.ai-summary-text.loading {
+    font-style: italic;
+    color: #999999;
 }
 
 #songList {
@@ -699,6 +800,192 @@ body {
     flex-shrink: 0;
 }
 
+.song-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.add-music-row {
+    background-color: #f9f9f9;
+    border: 2px dashed #d0d0d0;
+    cursor: pointer;
+}
+
+.add-music-row:hover {
+    background-color: #f0f0f0;
+    border-color: #fa233b;
+}
+
+.add-music-icon {
+    width: 52px;
+    height: 52px;
+    background-color: #ffffff;
+    border: 2px solid #d0d0d0;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: 300;
+    color: #999999;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+}
+
+.add-music-row:hover .add-music-icon {
+    border-color: #fa233b;
+    color: #fa233b;
+}
+
+.add-music-row .song-title {
+    color: #666666;
+}
+
+.remove-song-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+}
+
+.remove-song-button:hover {
+    transform: scale(1.1);
+}
+
+.minus-icon {
+    width: 24px;
+    height: 24px;
+    color: #fa233b;
+}
+
+/* Add Song Modal */
+.add-song-modal-content {
+    background: white;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 700px;
+    max-height: 80vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.add-song-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 32px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.add-song-header h2 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+    color: #000000;
+}
+
+.close-modal-button {
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+}
+
+.close-modal-button:hover {
+    background-color: #f0f0f0;
+}
+
+.close-modal-button svg {
+    width: 24px;
+    height: 24px;
+    color: #666666;
+}
+
+.add-song-list {
+    overflow-y: auto;
+    padding: 16px 32px 32px;
+    flex: 1;
+}
+
+.add-song-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-bottom: 8px;
+}
+
+.add-song-item:hover {
+    background-color: #f9f9f9;
+}
+
+.add-song-item.in-playlist {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.add-song-item.in-playlist:hover {
+    background-color: transparent;
+}
+
+.add-song-item .song-thumb {
+    width: 52px;
+    height: 52px;
+    object-fit: cover;
+    border-radius: 6px;
+    flex-shrink: 0;
+}
+
+.add-song-item .song-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.add-song-item .song-title {
+    margin: 0 0 4px 0;
+    font-size: 15px;
+    font-weight: 500;
+    color: #000000;
+}
+
+.add-song-item .song-artist {
+    margin: 0;
+    font-size: 13px;
+    color: #666666;
+}
+
+.add-song-item .add-icon {
+    width: 24px;
+    height: 24px;
+    color: #000000;
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+}
+
+.add-song-item:hover .add-icon {
+    transform: scale(1.15);
+}
+
+.add-song-item.in-playlist .add-icon {
+    color: #cccccc;
+    transform: none;
+}
 
 footer {
     border-top: 1px solid #e5e5e5;

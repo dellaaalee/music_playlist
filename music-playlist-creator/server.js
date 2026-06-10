@@ -67,6 +67,116 @@ app.put('/api/playlists/:playlistID/like', async (req, res) => {
     }
 });
 
+// PUT endpoint to update playlist details (name and author)
+app.put('/api/playlists/:playlistID/details', async (req, res) => {
+    try {
+        const { playlistID } = req.params;
+        const { name, author } = req.body;
+
+        // Read current data
+        const data = await fs.readFile(DATA_FILE, 'utf8');
+        const jsonData = JSON.parse(data);
+
+        // Find and update the playlist
+        const playlist = jsonData.playlists.find(p => p.playlistID === playlistID);
+
+        if (!playlist) {
+            return res.status(404).json({ error: 'Playlist not found' });
+        }
+
+        // Update playlist details
+        if (name !== undefined && name.trim() !== '') {
+            playlist.name = name.trim();
+        }
+        if (author !== undefined && author.trim() !== '') {
+            playlist.author = author.trim();
+        }
+
+        // Write back to file
+        await fs.writeFile(DATA_FILE, JSON.stringify(jsonData, null, 2));
+
+        res.json({ success: true, playlist });
+    } catch (error) {
+        console.error('Error updating playlist details:', error);
+        res.status(500).json({ error: 'Failed to update playlist details' });
+    }
+});
+
+// POST endpoint to add a song to a playlist
+app.post('/api/playlists/:playlistID/songs', async (req, res) => {
+    try {
+        const { playlistID } = req.params;
+        const { songID } = req.body;
+
+        // Read current data
+        const data = await fs.readFile(DATA_FILE, 'utf8');
+        const jsonData = JSON.parse(data);
+
+        // Find the playlist
+        const playlist = jsonData.playlists.find(p => p.playlistID === playlistID);
+
+        if (!playlist) {
+            return res.status(404).json({ error: 'Playlist not found' });
+        }
+
+        // Check if song exists in the songs library
+        if (!jsonData.songs[songID]) {
+            return res.status(404).json({ error: 'Song not found in library' });
+        }
+
+        // Check if song is already in the playlist
+        if (playlist.songs.includes(songID)) {
+            return res.status(400).json({ error: 'Song already in playlist' });
+        }
+
+        // Add the song to the playlist
+        playlist.songs.push(songID);
+
+        // Write back to file
+        await fs.writeFile(DATA_FILE, JSON.stringify(jsonData, null, 2));
+
+        res.json({ success: true, playlistID, songID, allSongs: playlist.songs });
+    } catch (error) {
+        console.error('Error adding song:', error);
+        res.status(500).json({ error: 'Failed to add song' });
+    }
+});
+
+// DELETE endpoint to remove a song from a playlist
+app.delete('/api/playlists/:playlistID/songs/:songID', async (req, res) => {
+    try {
+        const { playlistID, songID } = req.params;
+
+        // Read current data
+        const data = await fs.readFile(DATA_FILE, 'utf8');
+        const jsonData = JSON.parse(data);
+
+        // Find the playlist
+        const playlist = jsonData.playlists.find(p => p.playlistID === playlistID);
+
+        if (!playlist) {
+            return res.status(404).json({ error: 'Playlist not found' });
+        }
+
+        // Find and remove the song
+        const songIndex = playlist.songs.indexOf(songID);
+
+        if (songIndex === -1) {
+            return res.status(404).json({ error: 'Song not found in playlist' });
+        }
+
+        playlist.songs.splice(songIndex, 1);
+
+        // Write back to file
+        await fs.writeFile(DATA_FILE, JSON.stringify(jsonData, null, 2));
+
+        res.json({ success: true, playlistID, songID, remainingSongs: playlist.songs });
+    } catch (error) {
+        console.error('Error removing song:', error);
+        res.status(500).json({ error: 'Failed to remove song' });
+    }
+});
+
 // DELETE endpoint to delete a playlist
 app.delete('/api/playlists/:playlistID', async (req, res) => {
     try {

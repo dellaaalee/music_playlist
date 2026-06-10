@@ -33,6 +33,17 @@
         </div>
     </div>
 
+    <div class="sort-bar">
+        <div class="sort-container">
+            <label for="sortSelect" class="sort-label">Sort by:</label>
+            <select id="sortSelect" class="sort-select" aria-label="Sort playlists">
+                <option value="default">Default</option>
+                <option value="likes">Like Count</option>
+                <option value="az">A-Z</option>
+            </select>
+        </div>
+    </div>
+
     <main class="app-content">
         <!-- Content will be dynamically populated from data.json via script.js -->
     </main>
@@ -59,13 +70,14 @@
                 <div class="modal-header-text">
                     <h1 id="playlistName"></h1>
                     <p id="playlistCreator"></p>
+                    <p id="aiSummaryText" class="ai-summary-text hidden"></p>
                     <div class="modal-buttons">
                         <button type="button" id="shuffleButton" class="shuffle-button" aria-label="Shuffle playlist">
                             Shuffle
                         </button>
-                        <button type="button" id="aiSummaryButton" class="ai-summary-button" aria-label="AI Summary">
+                        <button type="button" id="aiSummaryButton" class="ai-summary-button" aria-label="Get Description">
                             <img src="assets/img/ai_icon.png" alt="AI" class="ai-icon">
-                            AI Summary
+                            Get Description
                         </button>
                     </div>
                 </div>
@@ -74,13 +86,25 @@
         </div>
     </div>
 
+    <div id="addSongModal" class="modal modal-overlay" aria-hidden="true">
+        <div class="add-song-modal-content" role="dialog" aria-modal="true" aria-label="Add songs to playlist">
+            <div class="add-song-header">
+                <h2>Add Songs</h2>
+                <button type="button" id="closeAddSongModal" class="close-modal-button" aria-label="Close">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+            </div>
+            <div id="addSongList" class="add-song-list"></div>
+        </div>
+    </div>
+
     <footer>
         <p>© 2026 Salesforce FTL. All rights reserved.</p>
     </footer>
 
-    <script src="script.js"></script>
-</body>
-
+    <script src="secrets.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
