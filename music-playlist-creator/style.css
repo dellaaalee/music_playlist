@@ -865,6 +865,10 @@ body {
 }
 
 /* Add Song Modal */
+#addSongModal {
+    z-index: 1100; 
+}
+
 .add-song-modal-content {
     background: white;
     border-radius: 16px;
@@ -985,6 +989,84 @@ body {
 .add-song-item.in-playlist .add-icon {
     color: #cccccc;
     transform: none;
+}
+
+/* Create Playlist Modal */
+.create-playlist-body {
+    padding: 24px 32px 32px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.create-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.create-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #000000;
+}
+
+.create-input {
+    padding: 10px 16px;
+    font-size: 15px;
+    border: 1px solid #d0d0d0;
+    border-radius: 10px;
+    outline: none;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, Arial, sans-serif;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.create-input:focus {
+    border-color: #000000;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+}
+
+.create-input::placeholder {
+    color: #999999;
+}
+
+.new-playlist-songs {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.new-playlist-songs:empty::after {
+    content: "No songs added yet.";
+    color: #999999;
+    font-size: 14px;
+    padding: 4px 0;
+}
+
+.add-song-trigger {
+    align-self: flex-start;
+    padding: 10px 18px;
+    background-color: #f9f9f9;
+    border: 2px dashed #d0d0d0;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #666666;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.add-song-trigger:hover {
+    background-color: #f0f0f0;
+    border-color: #fa233b;
+    color: #fa233b;
+}
+
+.create-submit {
+    align-self: stretch;
+    text-align: center;
+    margin-top: 4px;
 }
 
 footer {

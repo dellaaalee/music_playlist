@@ -69,46 +69,46 @@ Estimated time spent: **#** hours spent in total
     - [x] **VIDEO WALKTHROUGH SPECIAL INSTRUCTIONS:** In addition to showcasing the above features, for ease of grading, please show yourself refreshing the featured page more than once. 
   - [x] Application includes a navigation bar or some other mechanism such that users can navigate to the page with all playlists from the featured page and vice versa without using the browser's back and forward buttons. 
 
-- [ ] **Planning Documentation**
-  - [ ] Repository includes a `planning.md` file with:
-    - [ ] A **Data Shape** section (fields and types for playlist and song objects)
-    - [ ] A **UI and Interaction Rules** section (at least three rules describing what happens in the UI for a user action)
-    - [ ] At least one **Function Spec** (name, purpose, inputs, outputs, side effects)
-    - [ ] A **Featured Page** section describing the random playlist display behavior
-    - [ ] A **Decisions Log** with entries from at least two different milestones
+- [x] **Planning Documentation**
+  - [x] Repository includes a `planning.md` file with:
+    - [x] A **Data Shape** section (fields and types for playlist and song objects)
+    - [x] A **UI and Interaction Rules** section (at least three rules describing what happens in the UI for a user action)
+    - [x] At least one **Function Spec** (name, purpose, inputs, outputs, side effects)
+    - [x] A **Featured Page** section describing the random playlist display behavior
+    - [x] A **Decisions Log** with entries from at least two different milestones
 
-- [ ] **AI-Powered Playlist Description**
-  - [ ] The playlist detail modal includes a "Get Description" button.
-  - [ ] Clicking the button calls an AI API and displays a generated description within the modal.
-  - [ ] `planning.md` includes an **AI Feature Spec** documenting role, task, inputs, output format, constraints, and failure behavior.
-  - [ ] **VIDEO WALKTHROUGH SPECIAL INSTRUCTIONS:** For ease of grading, open your browser's DevTools Network tab, click  the "Get Description" button, and show the outbound request going directly to an AI API URL (e.g., `openrouter.ai`).
+- [x] **AI-Powered Playlist Description**
+  - [x] The playlist detail modal includes a "Get Description" button.
+  - [x] Clicking the button calls an AI API and displays a generated description within the modal.
+  - [x] `planning.md` includes an **AI Feature Spec** documenting role, task, inputs, output format, constraints, and failure behavior.
+  - [x] **VIDEO WALKTHROUGH SPECIAL INSTRUCTIONS:** For ease of grading, open your browser's DevTools Network tab, click  the "Get Description" button, and show the outbound request going directly to an AI API URL (e.g., `openrouter.ai`).
 
 
 
 #### STRETCH FEATURES
 
-- [ ] **Add New Playlists**
-  - [ ] Allow users to create new playlists.
-  - [ ] Using a form, users can input playlist:
-    - [ ] Name
-    - [ ] Author
+- [x] **Add New Playlists**
+  - [x] Allow users to create new playlists.
+  - [x] Using a form, users can input playlist:
+    - [x] Name
+    - [x] Author
     - [ ] Cover image
-    - [ ] Add one or more songs to the playlist, specifying the song's:
-      - [ ] Title
-      - [ ] Artist
-  - [ ] The resulting playlist should display in the grid view.
-  - [ ] **VIDEO WALKTHROUGH SPECIAL INSTRUCTIONS:** For ease of grading, please show yourself adding at least two songs to the playlist. 
+    - [x] Add one or more songs to the playlist, specifying the song's:
+      - [x] Title
+      - [x] Artist
+  - [x] The resulting playlist should display in the grid view.
+  - [x] **VIDEO WALKTHROUGH SPECIAL INSTRUCTIONS:** For ease of grading, please show yourself adding at least two songs to the playlist. 
 
-- [ ] **Edit Existing Playlists**
-  - [ ] Enable users to modify the details of existing playlists.
-  - [ ] Add an edit button to each playlist tile.
-  - [ ] Users can update the playlist:
-    - [ ] Name
-    - [ ] Author
-    - [ ] Songs
-  - [ ] The playlist grid view and playlist detail modal should update to display any changes (see Required Features, Criterion 1 & 2).
-  - [ ] **VIDEO WALKTHROUGH SPECIAL INSTRUCTIONS:** For ease of grading, please show yourself:
-    - [ ] Editing all of a playlist's features (name, creator, AND songs)
+- [x] **Edit Existing Playlists**
+  - [x] Enable users to modify the details of existing playlists.
+  - [x] Add an edit button to each playlist tile.
+  - [x] Users can update the playlist:
+    - [x] Name
+    - [x] Author
+    - [x] Songs
+  - [x] The playlist grid view and playlist detail modal should update to display any changes (see Required Features, Criterion 1 & 2).
+  - [x] **VIDEO WALKTHROUGH SPECIAL INSTRUCTIONS:** For ease of grading, please show yourself:
+    - [x] Editing all of a playlist's features (name, creator, AND songs)
     - [ ] Editing some of a playlist's features (name, creator, OR songs) 
 
 - [x] **Delete Playlists**
@@ -129,9 +129,9 @@ Estimated time spent: **#** hours spent in total
   - [x] User can click the clear button. When clicked:
     - [x] All text in the text input field is deleted
     - [x] All playlists in the `data.json` file are displayed in a grid view
-    - [ ] **Optional:** If the Add Playlist, Edit Existing Playlist, or Delete Playlist stretch features were implemented:
-      - [ ] If users can add a playlist, added playlists should be included in search results.
-      - [ ] If users can edit a playlist, search results should reflect the latest edits to each playlist.
+    - [x] **Optional:** If the Add Playlist, Edit Existing Playlist, or Delete Playlist stretch features were implemented:
+      - [x] If users can add a playlist, added playlists should be included in search results.
+      - [x] If users can edit a playlist, search results should reflect the latest edits to each playlist.
       - [x] If users can delete a playlist, deleted playlists should no longer be included in search results.
       - **Note:** You will not be graded on the implementation of this optional subfeature to keep your grade of this stretch feature independent of your implementation of other stretch features. However, we highly suggest including this in your implementation to model realistic behavior of real applications. 
 
@@ -140,7 +140,7 @@ Estimated time spent: **#** hours spent in total
     - [x] Name (A-Z alphabetically)
     - [x] Number of likes (descending order)
     - [ ] Date added (most recent to oldest, chronologically)
-  - [ ] Selecting a sort option should result in a reordering based on the selected sort while maintaining a grid view.
+  - [x] Selecting a sort option should result in a reordering based on the selected sort while maintaining a grid view.
 
 ### Walkthrough Video
 
@@ -150,20 +150,17 @@ Estimated time spent: **#** hours spent in total
 
 * Did the topics discussed in your labs prepare you to complete the assignment? Be specific, which features in your weekly assignment did you feel unprepared to complete?
 
-Add your response here
+Lab 3, virtual book club, specificially step 8, where AI-powered book summaries, helped me the most to complete the project. I used the knowledge that I gained from the lab to connect AI API to my project to finish the "get description" button feature. 
 
 * If you had more time, what would you have done differently? Would you have added additional features? Changed the way your project responded to a particular event, etc.
   
-Add your response here
+If I had more time, I would also implement finer detail things in the playlist like date added data. I also want to implement the song actually playing feature for the website. Right now, the only thing I implemented is the playlist editing things rather than making the website function as a music player. I mainly added feature that made the website look like it is a playlist libraries.  
 
 * Reflect on your project demo, what went well? Were there things that maybe didn't go as planned? Did you notice something that your peer did that you would like to try next time?
 
 Add your response here
 
-### Open-source libraries used
 
-- Add any links to open-source libraries used in your project.
 
 ### Shout out
-
-Give a shout out to somebody from your cohort that especially helped you during your project. This can be a fellow peer, instructor, TA, mentor, etc.
+peer

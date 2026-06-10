@@ -100,6 +100,35 @@
         </div>
     </div>
 
+    <div id="createPlaylistModal" class="modal modal-overlay" aria-hidden="true">
+        <div class="add-song-modal-content" role="dialog" aria-modal="true" aria-label="Create a new playlist">
+            <div class="add-song-header">
+                <h2>Create Playlist</h2>
+                <button type="button" id="closeCreatePlaylistModal" class="close-modal-button" aria-label="Close">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="create-playlist-body">
+                <div class="create-field">
+                    <label for="newPlaylistName" class="create-label">Playlist name</label>
+                    <input type="text" id="newPlaylistName" class="create-input" placeholder="My playlist" aria-label="Playlist name">
+                </div>
+                <div class="create-field">
+                    <label for="newPlaylistAuthor" class="create-label">Author</label>
+                    <input type="text" id="newPlaylistAuthor" class="create-input" placeholder="Your name" aria-label="Author">
+                </div>
+                <div class="create-field">
+                    <span class="create-label">Songs</span>
+                    <div id="newPlaylistSongs" class="new-playlist-songs"></div>
+                    <button type="button" id="createAddSongButton" class="add-song-trigger">+ Add Song</button>
+                </div>
+                <button type="button" id="createPlaylistSubmit" class="shuffle-button create-submit">Create Playlist</button>
+            </div>
+        </div>
+    </div>
+
     <footer>
         <p>© 2026 Salesforce FTL. All rights reserved.</p>
     </footer>

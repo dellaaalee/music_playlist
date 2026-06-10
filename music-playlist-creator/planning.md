@@ -36,6 +36,10 @@ When a user clicks on the like icon, the like count increases by 1 and there is 
 What does the shuffle button do?
 The shuffle button enables user to shuffle songs within a playlist or changing the order of the song that is being played. 
 
+UI rules:
+The general theme of the website is red and white with clean vibe. 
+No emoji at all in the website, when it is needed, replace with icons that matches with general theme of the website
+
 
 ### Function Specs
 #### Dynamically Create Playlist Cards:
@@ -117,30 +121,18 @@ if the API call failes or the model returns an empty response, show the fallback
 
 "get description" button. The get description is next to the shuffle button. The same line. The description will be generated under the album cover and song title and on top of song lists
 
-constraints:
-- do not mention any specific songs
-
-
-failure message: summary unavilable - try again in a moment
-const FAILURE_MESSAGE = "summary unavilable - try again in a moment";
-
-disable the button before the function is finished
-
-async function getSummary(description) {
-    try {
-        const response = await fetch(
-            {
-                method: "POST",
-
-            }
-        )
-    }
-}
-
 
 ### Decisions Log
-Milestone 1:
-
+Milestone 1: implemented the html for the website, I will have index.html, script.js to render the data or function, style.css to style the website, data.json for storing the data for playlist
+Milestone 2: decided that I want the general theme of the website to be clean and minial look. The theme color is white and red (fa233b). 
+Milestone 3: decided the change the format of data.json. I orginially had song object inside of the playlist object. I decided to separate them and just link the playlist[song] object to the song object or put it outside and just link the two because it would be easier to implement stretch feature using this data structure. If I want to change or edit the song in the playlist, I have limited access. I want to keep the song library that I have and never let user delete the data. 
+Milestone 4: Implented the detail for playlist modal window. 
+Milestone 5: Liking playlist. I want to save the data that user put in into the database. I had a boolean with true and false so that the like data will be stored even if the page is referesed. The like count is also implemented
+Milestone 6: Shuffle song is implemented. I was thinking of orginially shuffling the song order in the data.json too, but I realized that it was unnecessary. The data.json doesn't need to change, only the ordering of what the user sees in the page needs to change. The playlist order in the data.json will be the same regardless of the order that user is seeing because the order gets randomized when the user clicks on shuffle button
+Milestone 7: Created a feature page. The feature page can be accessed with the navbar. It is defaulted at "all" page. The playlist that is shown in the feature page is the randomized. It still gets data from data.json but it randomly picks one playlist to render to display on the page. When the page is refreshed, a new playlist is chosen. 
+Milestone 8: the AI feature is implemented. The AI API is connected to the website to show playlist description. It's one to two sentence that describes the general vibe of the playlist without mentioning specific songs or album name. It takes the song, artist, album name, playlist name in the playlist from data.json to get the response for the description
+Stretch:
+I implemented the search feature, adding and editing playlist
 
 
 
@@ -164,8 +156,14 @@ when the user click on the edit playlist, the playlist name and author could als
 when I click on the minus button on the edit playlist, if I click on the minus button associated with the song, delete the song from data.json
 When the user clicks on the add song after clicking the edit playlist button, a modal with all the songs should populate (from data.json), the user can click on each song to add to the playlist. 
 
-When we delete the song from the playlist, the song is deleted
+When we delete the song from the playlist, the song is deleted from the playlist object, but the actual song object is not deleted
 
 
 #### sorting playlist
 implment the sorting playlist feature. It should be placed on the top of the playlist below  the header/navbar. It should sort by and a drop down menu with "like count" and "A-Z". Sort the playlist based on the drop down list. The playlist should render and reorder based on the selected sorted view. Make sure to follow the rest of the design format. The sort function should only be visible in the "all" tab
+
+
+#### add playlist
++ button that's next to the header. 
+It should open a modal window that allows user to add a playlist. The user will be able to input data. It will have a "playlist name" field, "author" field, "add song" field. Add song will have the same implementation as the "edit playlist" add music function. It is required to input playlist name and author and one song to make a playlist. The user inputed data will be updated in data.json file and updated in the rendering. 
+

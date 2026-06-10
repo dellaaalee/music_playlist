@@ -14,6 +14,18 @@ const addSongModal = document.getElementById("addSongModal");
 const addSongList = document.getElementById("addSongList");
 const closeAddSongModal = document.getElementById("closeAddSongModal");
 
+// Add playlist (+) button
+const addButton = document.getElementById("addButton");
+
+// Create playlist modal elements
+const createPlaylistModal = document.getElementById("createPlaylistModal");
+const closeCreatePlaylistModal = document.getElementById("closeCreatePlaylistModal");
+const newPlaylistName = document.getElementById("newPlaylistName");
+const newPlaylistAuthor = document.getElementById("newPlaylistAuthor");
+const newPlaylistSongs = document.getElementById("newPlaylistSongs");
+const createAddSongButton = document.getElementById("createAddSongButton");
+const createPlaylistSubmit = document.getElementById("createPlaylistSubmit");
+
 // Search bar elements
 const searchToggle = document.getElementById("searchToggle");
 const searchBar = document.getElementById("searchBar");
@@ -50,6 +62,10 @@ let songsData = {};
 let currentPlaylistID = null; // Track the currently open playlist in modal
 let isEditMode = false; // Track if we're in edit mode
 
+// Add-song modal mode: 'edit' adds to the open playlist, 'create' collects songs for a new playlist
+let addSongMode = 'edit';
+let newPlaylistSongIDs = []; // Song IDs selected while building a new playlist
+
 /**
  * Fetches playlist data from backend API
  *
@@ -61,10 +77,14 @@ let isEditMode = false; // Track if we're in edit mode
 async function loadPlaylistData() {
     try {
         // Fetch data from backend API
+        console.log('Fetching playlist data...');
         const response = await fetch('http://localhost:8080/api/playlists');
+        console.log('Response status:', response.status);
         const data = await response.json();
+        console.log('Data received:', data);
         playlistsData = data.playlists;
         songsData = data.songs;
+        console.log('Playlists loaded:', playlistsData.length);
 
         return playlistsData;
     } catch (error) {
@@ -198,6 +218,36 @@ async function addSongToPlaylist(playlistID, songID) {
         return result;
     } catch (error) {
         console.error('Error adding song:', error);
+        throw error;
+    }
+}
+
+/**
+ * Create a new playlist via backend
+ *
+ * Takes in: name (string), author (string), songs (array of song IDs)
+ * Returns: the created playlist object from the backend
+ */
+async function createPlaylist(name, author, songs) {
+    try {
+        const response = await fetch('http://localhost:8080/api/playlists', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name, author, songs })
+        });
+
+        if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.error || 'Failed to create playlist');
+        }
+
+        const result = await response.json();
+        console.log('Successfully created playlist:', result);
+        return result.playlist;
+    } catch (error) {
+        console.error('Error creating playlist:', error);
         throw error;
     }
 }
@@ -581,6 +631,7 @@ function setupEditModeListeners() {
     if (addMusicRow) {
         addMusicRow.addEventListener('click', () => {
             console.log('Add music clicked');
+            addSongMode = 'edit';
             openAddSongModal();
         });
     }
@@ -642,10 +693,18 @@ function closeModal() {
  * Open add song modal and populate with all available songs
  */
 function openAddSongModal() {
-    const playlist = playlistsData.find(p => p.playlistID === currentPlaylistID);
-    if (!playlist) {
-        console.error('Playlist not found');
-        return;
+    // Determine which song IDs are already selected, based on the current mode.
+    // 'edit' uses the open playlist's songs; 'create' uses the in-progress selection.
+    let selectedSongIDs;
+    if (addSongMode === 'create') {
+        selectedSongIDs = newPlaylistSongIDs;
+    } else {
+        const playlist = playlistsData.find(p => p.playlistID === currentPlaylistID);
+        if (!playlist) {
+            console.error('Playlist not found');
+            return;
+        }
+        selectedSongIDs = playlist.songs;
     }
 
     // Get all songs from songsData
@@ -653,7 +712,7 @@ function openAddSongModal() {
 
     // Build the song list HTML
     const songItems = allSongs.map(song => {
-        const isInPlaylist = playlist.songs.includes(song.songID);
+        const isInPlaylist = selectedSongIDs.includes(song.songID);
         return `
             <div class="add-song-item ${isInPlaylist ? 'in-playlist' : ''}" data-song-id="${song.songID}">
                 <img class="song-thumb" src="${song.cover}" alt="Cover art for ${song.title}">
@@ -690,6 +749,105 @@ function closeAddSongModalFunc() {
 }
 
 /**
+ * Open the Create Playlist modal with empty fields
+ */
+function openCreatePlaylistModal() {
+    // Reset form state
+    newPlaylistName.value = "";
+    newPlaylistAuthor.value = "";
+    newPlaylistSongIDs = [];
+    renderNewPlaylistSongs();
+
+    createPlaylistModal.style.display = "flex";
+    createPlaylistModal.setAttribute("aria-hidden", "false");
+    newPlaylistName.focus();
+}
+
+/**
+ * Close the Create Playlist modal
+ */
+function closeCreatePlaylistModalFunc() {
+    createPlaylistModal.style.display = "none";
+    createPlaylistModal.setAttribute("aria-hidden", "true");
+}
+
+/**
+ * Render the list of songs selected for the new playlist (with remove buttons)
+ */
+function renderNewPlaylistSongs() {
+    const songs = resolveSongs(newPlaylistSongIDs);
+
+    newPlaylistSongs.innerHTML = songs.map(song => `
+        <div class="song-row" data-song-id="${song.songID}">
+            <div class="song-meta">
+                <img class="song-thumb" src="${song.cover}" alt="Cover art for ${song.title}">
+                <div class="song-text">
+                    <p class="song-title">${song.title}</p>
+                    <p class="song-artist">${song.artist}</p>
+                </div>
+            </div>
+            <div class="song-actions">
+                <button class="remove-song-button" data-song-id="${song.songID}" aria-label="Remove song">
+                    <svg class="minus-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                        <line x1="8" y1="12" x2="16" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    `).join("");
+
+    // Wire up remove buttons to drop the song from the in-progress selection
+    newPlaylistSongs.querySelectorAll('.remove-song-button').forEach(button => {
+        button.addEventListener('click', () => {
+            const songID = button.dataset.songId;
+            newPlaylistSongIDs = newPlaylistSongIDs.filter(id => id !== songID);
+            renderNewPlaylistSongs();
+        });
+    });
+}
+
+/**
+ * Validate inputs, create the playlist via backend, and re-render the grid
+ */
+async function submitNewPlaylist() {
+    const name = newPlaylistName.value.trim();
+    const author = newPlaylistAuthor.value.trim();
+
+    // Required: name, author, and at least one song
+    if (!name || !author) {
+        alert('Please enter both a playlist name and an author.');
+        return;
+    }
+    if (newPlaylistSongIDs.length === 0) {
+        alert('Please add at least one song to the playlist.');
+        return;
+    }
+
+    createPlaylistSubmit.disabled = true;
+    try {
+        // Create on the backend (persists to data.json) and add to local data
+        const playlist = await createPlaylist(name, author, newPlaylistSongIDs);
+        playlistsData.push(playlist);
+
+        closeCreatePlaylistModalFunc();
+
+        // Switch to the "All" tab so the new playlist is visible, then re-render
+        tabButtons.forEach((btn) => btn.classList.remove("active"));
+        tabButtons[1].classList.add("active");
+        sortBar.style.display = "block";
+        renderAllView();
+
+        console.log('Playlist created:', playlist.playlistID);
+    } catch (error) {
+        console.error('Error creating playlist:', error);
+        alert('Failed to create playlist. Please try again.');
+    } finally {
+        createPlaylistSubmit.disabled = false;
+    }
+}
+
+/**
  * Set up event listeners for add song items
  */
 function setupAddSongListeners() {
@@ -697,6 +855,20 @@ function setupAddSongListeners() {
     addSongItems.forEach(item => {
         item.addEventListener('click', async () => {
             const songID = item.dataset.songId;
+
+            // In create mode, just collect the song locally (no backend yet)
+            if (addSongMode === 'create') {
+                if (!newPlaylistSongIDs.includes(songID)) {
+                    newPlaylistSongIDs.push(songID);
+                    renderNewPlaylistSongs();
+                }
+
+                // Mark as added in the picker
+                item.classList.add('in-playlist');
+                const icon = item.querySelector('.add-icon');
+                icon.innerHTML = '<path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>';
+                return;
+            }
 
             try {
                 // Add song to playlist via backend
@@ -758,9 +930,11 @@ if (playlistModal) {
 // Close modal with Escape key
 document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
-        // Close add song modal if open
+        // Close the topmost open modal: add-song sits above create/playlist modals
         if (addSongModal.style.display === "flex") {
             closeAddSongModalFunc();
+        } else if (createPlaylistModal.style.display === "flex") {
+            closeCreatePlaylistModalFunc();
         } else {
             closeModal();
         }
@@ -780,6 +954,46 @@ if (addSongModal) {
         if (event.target === addSongModal) {
             closeAddSongModalFunc();
         }
+    });
+}
+
+// --- Create Playlist modal wiring ---
+
+// Open the create modal from the header "+" button
+if (addButton) {
+    addButton.addEventListener("click", () => {
+        openCreatePlaylistModal();
+    });
+}
+
+// Close create modal via X button
+if (closeCreatePlaylistModal) {
+    closeCreatePlaylistModal.addEventListener("click", () => {
+        closeCreatePlaylistModalFunc();
+    });
+}
+
+// Close create modal when clicking the overlay
+if (createPlaylistModal) {
+    createPlaylistModal.addEventListener("click", (event) => {
+        if (event.target === createPlaylistModal) {
+            closeCreatePlaylistModalFunc();
+        }
+    });
+}
+
+// "+ Add Song" inside the create modal opens the shared song picker in create mode
+if (createAddSongButton) {
+    createAddSongButton.addEventListener("click", () => {
+        addSongMode = 'create';
+        openAddSongModal();
+    });
+}
+
+// Submit the new playlist
+if (createPlaylistSubmit) {
+    createPlaylistSubmit.addEventListener("click", () => {
+        submitNewPlaylist();
     });
 }
 

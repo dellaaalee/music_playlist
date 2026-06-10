@@ -289,20 +289,32 @@
       "author": "Kai Johnson",
       "likeCount": 12,
       "liked": false,
-      "songs": []
+      "songs": [
+        "s002",
+        "s003",
+        "s004",
+        "s005",
+        "s001",
+        "s007",
+        "s008"
+      ]
     },
     {
       "playlistID": "p007",
       "name": "Indie Discovery",
       "cover": "https://picsum.photos/seed/indie-discovery/420/240",
       "author": "Sam Rivera",
-      "likeCount": 11,
-      "liked": false,
+      "likeCount": 12,
+      "liked": true,
       "songs": [
         "s019",
         "s020",
         "s021",
-        "s002"
+        "s002",
+        "s007",
+        "s008",
+        "s009",
+        "s010"
       ]
     },
     {
@@ -315,6 +327,18 @@
       "songs": [
         "s023",
         "s024"
+      ]
+    },
+    {
+      "playlistID": "p009",
+      "name": "h",
+      "cover": "https://picsum.photos/seed/h/420/240",
+      "author": "n",
+      "likeCount": 1,
+      "liked": true,
+      "songs": [
+        "s001",
+        "s002"
       ]
     }
   ]
