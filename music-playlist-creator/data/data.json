@@ -284,28 +284,28 @@
   "playlists": [
     {
       "playlistID": "p002",
-      "name": "Workout Hits",
+      "name": "Workout Hits hello",
       "cover": "https://picsum.photos/seed/workout-hits/420/240",
-      "author": "Audrey",
-      "likeCount": 12,
-      "liked": false,
+      "author": "Della",
+      "likeCount": 13,
+      "liked": true,
       "songs": [
-        "s004",
         "s005",
         "s001",
         "s007",
         "s008",
         "s031",
-        "s002"
+        "s002",
+        "s003"
       ]
     },
     {
       "playlistID": "p007",
-      "name": "Indie Discovery",
+      "name": "Indie Discovery d",
       "cover": "https://picsum.photos/seed/indie-discovery/420/240",
-      "author": "Sam Rivera",
-      "likeCount": 12,
-      "liked": true,
+      "author": "Love hello",
+      "likeCount": 11,
+      "liked": false,
       "songs": [
         "s019",
         "s020",
@@ -314,7 +314,10 @@
         "s007",
         "s008",
         "s009",
-        "s010"
+        "s010",
+        "s001",
+        "s003",
+        "s023"
       ]
     },
     {
@@ -322,8 +325,8 @@
       "name": "Night Energy",
       "cover": "https://picsum.photos/seed/night-energy/420/240",
       "author": "Leah Patel",
-      "likeCount": 15,
-      "liked": true,
+      "likeCount": 14,
+      "liked": false,
       "songs": [
         "s023",
         "s024"
@@ -334,8 +337,8 @@
       "name": "della",
       "cover": "https://picsum.photos/seed/della/420/240",
       "author": "della",
-      "likeCount": 1,
-      "liked": true,
+      "likeCount": 0,
+      "liked": false,
       "songs": [
         "s022",
         "s021"
@@ -343,15 +346,18 @@
     },
     {
       "playlistID": "p010",
-      "name": "audreys playlist",
-      "cover": "https://picsum.photos/seed/audreys-playlist/420/240",
-      "author": "author",
+      "name": "Della's playlist",
+      "cover": "https://picsum.photos/seed/della-s-playlist/420/240",
+      "author": "della",
       "likeCount": 0,
       "liked": false,
       "songs": [
-        "s007",
-        "s006",
-        "s005"
+        "s002",
+        "s003",
+        "s033",
+        "s031",
+        "s030",
+        "s029"
       ]
     }
   ]

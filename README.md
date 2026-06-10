@@ -2,7 +2,7 @@
 
 Submitted by: Della Lee
 
-Estimated time spent: **#** hours spent in total
+Estimated time spent: **10** hours spent in total
 
 ### Application Features
 
@@ -144,7 +144,7 @@ Estimated time spent: **#** hours spent in total
 
 ### Walkthrough Video
 
-**Walkthrough video:** [Music Playlist Explorer Walkthrough](ADD_LOOM_LINK_HERE)
+**Walkthrough video:** [Music Playlist Explorer Walkthrough](https://www.loom.com/share/dc6ef799598c49e09e95ca1a2fe62c0c)
 
 ### Reflection
 
