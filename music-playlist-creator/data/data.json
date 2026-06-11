@@ -283,65 +283,15 @@
   },
   "playlists": [
     {
-      "playlistID": "p002",
-      "name": "Workout Hits hello",
-      "cover": "https://picsum.photos/seed/workout-hits/420/240",
-      "author": "Della",
-      "likeCount": 13,
-      "liked": true,
-      "songs": [
-        "s005",
-        "s001",
-        "s007",
-        "s008",
-        "s031",
-        "s002",
-        "s003"
-      ]
-    },
-    {
-      "playlistID": "p007",
-      "name": "Indie Discovery d",
-      "cover": "https://picsum.photos/seed/indie-discovery/420/240",
-      "author": "Love hello",
-      "likeCount": 11,
-      "liked": false,
-      "songs": [
-        "s019",
-        "s020",
-        "s021",
-        "s002",
-        "s007",
-        "s008",
-        "s009",
-        "s010",
-        "s001",
-        "s003",
-        "s023"
-      ]
-    },
-    {
       "playlistID": "p008",
       "name": "Night Energy",
       "cover": "https://picsum.photos/seed/night-energy/420/240",
       "author": "Leah Patel",
-      "likeCount": 14,
-      "liked": false,
+      "likeCount": 15,
+      "liked": true,
       "songs": [
         "s023",
         "s024"
-      ]
-    },
-    {
-      "playlistID": "p009",
-      "name": "della",
-      "cover": "https://picsum.photos/seed/della/420/240",
-      "author": "della",
-      "likeCount": 0,
-      "liked": false,
-      "songs": [
-        "s022",
-        "s021"
       ]
     },
     {
@@ -349,15 +299,39 @@
       "name": "Della's playlist",
       "cover": "https://picsum.photos/seed/della-s-playlist/420/240",
       "author": "della",
-      "likeCount": 0,
-      "liked": false,
+      "likeCount": 1,
+      "liked": true,
       "songs": [
-        "s002",
         "s003",
         "s033",
         "s031",
         "s030",
         "s029"
+      ]
+    },
+    {
+      "playlistID": "p011",
+      "name": "alexando aylist",
+      "cover": "https://picsum.photos/seed/alexandor-playlist/420/240",
+      "author": "della",
+      "likeCount": 1,
+      "liked": true,
+      "songs": [
+        "s002",
+        "s003"
+      ]
+    },
+    {
+      "playlistID": "p014",
+      "name": "della's play",
+      "cover": "https://picsum.photos/seed/della-s-play/420/240",
+      "author": "della",
+      "likeCount": 0,
+      "liked": false,
+      "songs": [
+        "s010",
+        "s012",
+        "s002"
       ]
     }
   ]
